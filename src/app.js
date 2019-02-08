@@ -9,6 +9,7 @@ import './style.scss'
 import NavBar from './components/common/NavBar'
 import Home from './Home'
 import PlacesIndex from './components/places/PlacesIndex'
+import PlacesShow from './components/places/PlacesShow'
 
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
         <main>
           <NavBar />
           <Switch>
+            <Route path="/places/:id" component={PlacesShow} />
             <Route path="/places" component={PlacesIndex} />
             <Route path="/" component={Home} />
           </Switch>
