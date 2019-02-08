@@ -13,7 +13,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.4",
+<<<<<<< HEAD
     "bulma": "^0.7.3",
+=======
+    "bluebird": "^3.5.3",
+>>>>>>> development
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
