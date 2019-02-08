@@ -6,12 +6,14 @@ import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 import 'bulma'
 import './style.scss'
 
+import NavBar from './components/common/NavBar'
+
 class App extends React.Component {
   render() {
     return(
       <BrowserRouter>
         <main>
-          <h1>Hello World</h1>
+          <NavBar />
 
 
         </main>
