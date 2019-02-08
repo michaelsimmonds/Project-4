@@ -8,3 +8,21 @@ h1.title.is-1 {
   font-size: 150px;
   text-align: center;
 }
+
+.card-image {
+  .image {
+    height: 300px;
+    margin-top: 20px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.image {
+  height: 500px;
+  margin-top: 20px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

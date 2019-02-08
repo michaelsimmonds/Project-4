@@ -4,7 +4,6 @@ import axios from 'axios'
 import PlaceCard from './PlaceCard.js'
 
 class PlacesIndex extends React.Component {
-
   constructor() {
     super()
 
@@ -14,12 +13,10 @@ class PlacesIndex extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('')
+    axios.get('/api/places')
       .then(res => this.setState({ places: res.data }))
 
   }
-
-
 
   render() {
     return(
