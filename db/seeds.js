@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const mongoose = require('mongoose')
+const config = require('./config/environment')
 // const Promise = require('bluebird')
 
 // mongoose.Promise = Promise
@@ -8,7 +9,7 @@ const mongoose = require('mongoose')
 const Place = require('../models/place')
 const User = require('../models/user')
 
-mongoose.connect(process.env.MONGODB_URI, (err, db) => {
+mongoose.connect(config.dbURI, (err, db) => {
   db.dropDatabase()
     .then(() => {
       return User.create({

@@ -16,7 +16,7 @@ const PlaceCard = ({ _id, name, country, descriptShort, image }) => {
         <div className="card-content">
           <div className="content">
             <p><strong>Name: </strong>{name}</p>
-            <p><strong>Country: </strong>{country}%</p>
+            <p><strong>Country: </strong>{country}</p>
             <p>{descriptShort}</p>
           </div>
         </div>
