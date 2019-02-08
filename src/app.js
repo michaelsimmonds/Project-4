@@ -10,6 +10,7 @@ import NavBar from './components/common/NavBar'
 import Home from './Home'
 import PlacesIndex from './components/places/PlacesIndex'
 import PlacesShow from './components/places/PlacesShow'
+import Login from './components/auth/Login'
 
 
 class App extends React.Component {
@@ -21,6 +22,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/places/:id" component={PlacesShow} />
             <Route path="/places" component={PlacesIndex} />
+            <Route path="/login" component={Login} />
             <Route path="/" component={Home} />
           </Switch>
 
