@@ -7,6 +7,7 @@ import 'bulma'
 import './style.scss'
 
 import NavBar from './components/common/NavBar'
+import Home from './Home'
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
       <BrowserRouter>
         <main>
           <NavBar />
+          <Home />
 
 
         </main>
