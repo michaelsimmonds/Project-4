@@ -2,7 +2,7 @@ const router = require('express').Router()
 const placesController = require('../controllers/places')
 const authController = require('../config/auth')
 
-// const secureRoute = require('../lib/secureRoute')
+const secureRoute = require('../lib/secureRoute')
 
 router.route('/register')
   .post(authController.register)
@@ -12,7 +12,7 @@ router.route('/login')
 
 router.route('/places')
   .get(placesController.index)
-  .post(placesController.create)
+  .post(secureRoute, placesController.create)
 
 router.route('/places/:id')
   .get(placesController.show)

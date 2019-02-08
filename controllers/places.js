@@ -19,7 +19,7 @@ function createRoute( req, res ){
 function showRoute(req, res) {
   Place
     .findById(req.params.id)
-    .then(places =>res.status(201).json(places))
+    .then(places =>res.status(200).json(places))
 }
 
 
