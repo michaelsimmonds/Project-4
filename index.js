@@ -7,7 +7,7 @@ const routes = require('./config/routes')
 
 const app = express()
 
-mongoose.connect('mongodb://localhost/Project-4')
+mongoose.connect(process.env.MONGODB_URI)
 
 app.use(bodyParser.json())
 
