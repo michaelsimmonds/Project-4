@@ -13,7 +13,8 @@ const PlaceCard = ({ _id, name, descriptShort, image }) => {
             <div className="text-overlay">{name}</div>
           </div>
           <div className="back">
-            <h3>{descriptShort}</h3>
+            <figure className="image" style={{ backgroundImage: `url(${image})`}} />
+            <div className="text-overlay" id="back">{descriptShort}</div>
           </div>
         </div>
       </Link>
