@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const mongoose = require('mongoose')
 const config = require('../config/environment')
-const Promise = require('bluebird')
+// const Promise = require('bluebird')
 
 mongoose.Promise = Promise
 
