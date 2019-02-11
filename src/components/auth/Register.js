@@ -36,6 +36,8 @@ class Register extends React.Component {
     return(
       <main className="section">
         <div className="container">
+          <div className="columns">
+            <div className="column is-offset-4">
           <form onSubmit={this.handleSubmit}>
             <h2 className="title">Register</h2>
             <div className="field">
@@ -80,8 +82,10 @@ class Register extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button className="button is-dark">Submit</button>
+            <button className="button">Submit</button>
           </form>
+          </div>
+          </div>
         </div>
       </main>
     )

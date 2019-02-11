@@ -38,6 +38,8 @@ class Login extends React.Component {
     return(
       <main className="section">
         <div className="container">
+        <div className="columns">
+          <div className="column is-offset-4">
           <form onSubmit={this.handleSubmit}>
             <h2 className="title">Login</h2>
             <div className="field">
@@ -61,8 +63,10 @@ class Login extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button className="button is-dark">Log in</button>
+            <button className="button">Log in</button>
           </form>
+        </div>
+        </div>
         </div>
       </main>
     )
