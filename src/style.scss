@@ -1,16 +1,18 @@
+$font-colour: #F5F7FB;
+
 * {
   font-family: 'Dosis', sans-serif;
 }
 
 body {
-  background-color: #D6E1EE;
+  background-color: #EBF0F8;
   min-height: 100vh;
 }
 
 .navbar {
-  background: #2C497F;
+  background: #94B0DA;
   .navbar-item{
-  color: #FBF5F3;
+  color: $font-colour;
   font-weight: bold;
   font-size: 21px;
   }
@@ -46,12 +48,12 @@ body {
 
 h1.title.is-1 {
   font-size: 150px;
-  color:#FBF5F3;
+  color:$font-colour;
   padding-top: 200px;
   text-shadow: 2px 2px 10px #000000;
 }
 h3.title.is-1 {
-  color:#FBF5F3;
+  color:$font-colour;
   text-shadow: 2px 2px 10px #000000;
 }
 
@@ -64,8 +66,8 @@ input.input {
 }
 
 button.button {
-  background-color: #2C497F;
-  color: #FBF5F3;
+  background-color: #94B0DA;
+  color: $font-colour;
   font-weight: bold;
 }
 
@@ -99,7 +101,6 @@ button.button {
 .flipper {
 	transition: 2s;
 	transform-style: preserve-3d;
-
 	position: relative;
 }
 
@@ -129,7 +130,7 @@ div.place-title {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: $font-colour;
   font-size: 35px;
   font-weight: bolder;
   // background-color: rgba(0,0,0,.2);
@@ -149,7 +150,7 @@ div.place-title {
 
 #back {
   font-size: 18px;
-  color: white;
+  color: $font-colour;
   background-color: rgba(0,0,0,0.7);
   height: 100%;
   padding-top: 25px;
