@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Link } from 'react-router-dom'
+
 class Home extends React.Component{
   constructor() {
     super()
@@ -24,9 +26,11 @@ class Home extends React.Component{
       <section className={`bg bg-${this.state.bg}`}>
         <div className="hero-body">
           <div className="container">
-            <h1 className="title is-1">
+            <Link to="/places">
+              <h1 className="title is-1">
               Plan your trip
-            </h1>
+              </h1>
+            </Link>
             <h3 className="title is-1">text here about the purpose of our website</h3>
           </div>
         </div>
