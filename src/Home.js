@@ -27,6 +27,7 @@ class Home extends React.Component{
             <h1 className="title is-1">
               Plan your trip
             </h1>
+            <h3 className="title is-1">text here about the purpose of our website</h3>
           </div>
         </div>
       </section>

@@ -38,35 +38,35 @@ class Login extends React.Component {
     return(
       <main className="section">
         <div className="container">
-        <div className="columns">
-          <div className="column is-offset-4">
-          <form onSubmit={this.handleSubmit}>
-            <h2 className="title">Login</h2>
-            <div className="field">
-              <label className="label">Email</label>
-              <input
-                className="input"
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
+          <div className="columns">
+            <div className="column is-offset-4">
+              <form onSubmit={this.handleSubmit}>
+                <h2 className="title">Login</h2>
+                <div className="field">
+                  <label className="label">Email</label>
+                  <input
+                    className="input"
+                    name="email"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="field">
+                  <label className="label">Password</label>
+                  <input
+                    className="input"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <button className="button">Log in</button>
+              </form>
             </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <input
-                className="input"
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <button className="button">Log in</button>
-          </form>
-        </div>
-        </div>
+          </div>
         </div>
       </main>
     )
