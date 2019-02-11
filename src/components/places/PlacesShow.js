@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
+import Auth from '../../lib/Auth'
 
 class PlacesShow extends React.Component {
 
@@ -25,6 +26,8 @@ class PlacesShow extends React.Component {
       <section className="section">
         <div className="container">
           <h2 className="title is-1">{name}</h2>
+          {Auth.isAuthenticated() &&
+          <button className="button" id="add">Add to My Trip</button>}
 
           <div className="columns">
             <div className="column">
