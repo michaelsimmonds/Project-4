@@ -1,5 +1,7 @@
 import React from 'react'
 import mapboxgl from 'mapbox-gl'
+import axios from 'axios'
+
 const Promise = require('bluebird')
 
 Promise.promisifyAll(navigator.geolocation)
@@ -8,8 +10,8 @@ class Dashboard extends React.Component{
 
   constructor(){
     super()
-
     this.state = {
+      geoCoord: {},
       markersCoord: [],
       map: {},
       mapDOMElement: '',
@@ -36,6 +38,9 @@ class Dashboard extends React.Component{
         ]
       }
     }
+    this.drawTrip = this.drawTrip.bind(this)
+    this.calculateDirection = this.calculateDirection.bind(this)
+
   }
 
   createMarkups(){
@@ -65,14 +70,19 @@ class Dashboard extends React.Component{
   }
 
   addUserLocalisation(markersCoord){
-    let userLocation = []
+    let userLocation
 
     navigator.geolocation
       .getCurrentPositionAsync()
       .then(pos => userLocation = pos.coords)
       .catch(err => console.warn(err))
 
-    if(userLocation) return markersCoord.unshift({lat: userLocation.latitude, lng: userLocation.longitude})
+    if(userLocation){
+      return this.markersCoord.unshift({
+        lat: userLocation.latitude,
+        lng: userLocation.longitude
+      })
+    }
     else return markersCoord
 
   }
@@ -81,36 +91,44 @@ class Dashboard extends React.Component{
     this.markersCoord = this.state.data.places.map(place => {
       return ({lat: place.geog[0], lng: place.geog[1]})
     })
+    console.log(this.markersCoord)
     return true
   }
 
-  drawTrip(){
 
-    let angle, opposite, adjacent, direction, move, animation
-    // number of frames per longitude degree
-    const speedFactor = 30
-    // to store and cancel the animation
-    let startTime = 0
-    // progress = timestamp - startTime
-    let progress = 0
+  calculateDirection(){
+    const opposite = this.markersCoord[1].lat - this.markersCoord[0].lat
+    const adjacent = this.markersCoord[1].lng - this.markersCoord[0].lng
 
+    return {
+      angle: Math.atan(opposite / adjacent),
+      direction: this.markersCoord[1].lng - this.markersCoord[0].lng > 0 ? 'east' : 'west'
+    }
+  }
+
+
+  drawTrip(map){
+    const markers = this.markersCoord
+    let angle, opposite, adjacent, direction, move
+    var speedFactor = 30 // number of frames per longitude degree
+    var animation // to store and cancel the animation
+    var startTime = 0
+    var progress = 0 // progress = timestamp - startTime
     // Create a GeoJSON source with an empty lineString.
-    const geojson = {
+    var geojson = {
       'type': 'FeatureCollection',
       'features': [{
         'type': 'Feature',
         'geometry': {
           'type': 'LineString',
-          //Starting point
           'coordinates': [
-            [this.markersCoord[0].lng, this.markersCoord[0].lat]
-          ]
+            [markers[0].lng, markers[0].lat]
+          ] //Starting point
         }
       }]
     }
-
     // add the line which will be modified in the animation
-    this.map.addLayer({
+    map.addLayer({
       'id': 'line-animation',
       'type': 'line',
       'source': {
@@ -135,50 +153,47 @@ class Dashboard extends React.Component{
 
     animateLine()
 
+
     function calculateAngleOfTrajectory(){
-      opposite = this.markersCoord[1].lat - this.markersCoord[0].lat
-      adjacent = this.markersCoord[1].lng - this.markersCoord[0].lng
+      opposite = markers[1].lat - markers[0].lat
+      adjacent = markers[1].lng - markers[0].lng
       angle = Math.atan(opposite / adjacent)
-      direction = this.markersCoord[1].lng - this.markersCoord[0].lng > 0 ? 'east' : 'west'
+      direction = markers[1].lng - markers[0].lng > 0 ? 'east' : 'west'
     }
 
     function animateLine(timestamp) {
-
       progress = timestamp - startTime
 
-      if(direction === 'east'){
-        move = progress / speedFactor
-      } else if(direction === 'west') {
-        move = - progress / speedFactor
-      }
+      if(direction === 'east') move = progress / speedFactor
+      else if(direction === 'west') move = - progress / speedFactor
 
-      var x = move +  this.markersCoord[0].lng || this.markersCoord[0].lng // initial point
+      var x = move +  markers[0].lng || markers[0].lng // initial point
       // draw a sine wave with some math.
-      var y = (x - this.markersCoord[0].lng)  * Math.tan(angle) + this.markersCoord[0].lat|| this.markersCoord[0].lat
+      var y = (x - markers[0].lng)  * Math.tan(angle) + markers[0].lat|| markers[0].lat
       // append new coordinates to the lineString
       geojson.features[0].geometry.coordinates.push([x, y])
       // then update the map
-      this.map.getSource('line-animation').setData(geojson)
+      map.getSource('line-animation').setData(geojson)
 
       // Request the next frame of the animation.
-      if(x > this.markersCoord[1].lng && direction === 'east' || x < this.markersCoord[1].lng && direction === 'west'){
-        this.markersCoord.shift()
-        if(this.markersCoord.length < 2) return
+      if(x > markers[1].lng && direction === 'east' || x < markers[1].lng && direction === 'west'){
+        markers.shift()
+        if(markers.length < 2) return
         startTime = timestamp
         calculateAngleOfTrajectory()
       }
       animation = requestAnimationFrame(animateLine)
     }
-
   }
 
   componentDidMount(){
 
-    this.getMarkersCoord()
+    axios('api/places')
+      .then(() => this.getMarkersCoord())
       .then(() => this.addUserLocalisation())
       .then(() => this.createMap())
       .then(() => this.createMarkups())
-      .then(() => this.map.on('load', () => this.drawTrip()))
+      .then(() => this.map.on('load', () => this.drawTrip(this.map)))
 
   }
 
