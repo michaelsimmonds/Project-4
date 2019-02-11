@@ -37,7 +37,6 @@ class Dashboard extends React.Component{
         ]
       }
     }
-
   }
 
   calculateDirection(){

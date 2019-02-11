@@ -8,7 +8,9 @@ import './style.scss'
 
 import NavBar from './components/common/NavBar'
 import Home from './Home'
-import {PlacesIndex, PlacesShow} from './components/places/'
+import PlacesShow from './components/places/PlacesShow'
+import PlacesIndex from './components/places/PlacesIndex'
+
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Dashboard from './components/dashboard'

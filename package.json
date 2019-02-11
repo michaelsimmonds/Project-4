@@ -6,11 +6,11 @@
   "author": "Michael Simmonds <michaelsimmonds92@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --mode=development",
     "seed": "node db/seeds",
     "build": "webpack -p",
-    "start": "node index"
+    "start": "node index",
+    "test": "mocha test/**/*_spec.js --require test/spec_helper --recursive --exit"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -24,6 +24,7 @@
     "mapbox-gl": "^0.53.0",
     "mongoose": "^5.4.10",
     "react": "^16.8.1",
+    "react-background-slider": "^1.2.0",
     "react-dom": "^16.8.1",
     "react-router-dom": "^4.3.1"
   },
@@ -32,11 +33,14 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "chai": "^4.2.0",
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
+    "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "supertest": "^3.4.2",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"

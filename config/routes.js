@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const placesController = require('../controllers/places')
+const usersController = require('../controllers/users')
 const authController = require('../config/auth')
 
 const secureRoute = require('../lib/secureRoute')
@@ -16,5 +17,11 @@ router.route('/places')
 
 router.route('/places/:id')
   .get(placesController.show)
+
+router.route('/users')
+  .get(usersController.index)
+
+router.route('/users/:id')
+  .get(usersController.show)
 
 module.exports = router

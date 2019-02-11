@@ -25,25 +25,39 @@ class PlacesShow extends React.Component {
       <section className="section">
         <div className="container">
           <h2 className="title is-1">{name}</h2>
-          <hr />
 
           <div className="columns">
             <div className="column">
-              <figure className="image" style={{backgroundImage: `url(${image})`}} alt={name} />
+              <figure className="image" id="show-image" style={{backgroundImage: `url(${image})`}} alt={name} />
             </div>
 
             <div className="column">
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
-              <hr />
 
-              <h4 className="title is-4">Description</h4>
-              <p>{descriptLong}</p>
-              <hr />
+
+              <h4 className="title is-4">Budget</h4>
+              <p>£20/day</p>
+
+
+              <h4 className="title is-4">Best time to visit</h4>
+              <p>July to October</p>
+
+
+
             </div>
           </div>
         </div>
+        <div className="container" id="show-description">
+          <h4 className="title is-4">Description</h4>
+          <p>{descriptLong}</p>
+        </div>
+
+        <div className="container">
+          <div className="map">MAP GOES HERE</div>
+        </div>
       </section>
+
     )
   }
 }

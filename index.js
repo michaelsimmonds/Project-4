@@ -18,3 +18,5 @@ app.use('/api', routes)
 app.use('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
 
 app.listen(config.port, () => console.log(`Express is running on port ${config.port}`))
+
+module.exports = app

@@ -1,26 +1,68 @@
-.hero-body {
-  background-image: url('http://7428.net/wp-content/uploads/2013/10/Free-World-Map-Vector.png');
-  background-repeat: no-repeat;
+body {
+  background-color: #D6E1EE;
+  min-height: 100vh;
+}
+
+.navbar {
+  background: #2C497F;
+  .navbar-item{
+  color: #FBF5F3;
+  font-weight: bold;
+  }
+}
+
+.bg{
+  min-height: 100vh;
   background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 1s;
+}
+.bg-0{
+  background-image: url('https://d3hne3c382ip58.cloudfront.net/files/uploads/bookmundi/resized/cmsfeatured/uluru-rock-1511763600-1000X561.jpg');
+}
+.bg-1{
+  background-image: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/08/02/12/great-wall-of-china.jpg');
+}
+.bg-2{
+  background-image: url('http://www.leisureopportunities.co.uk/images/HIGH11765_313622.jpg');
+}
+.bg-3{
+  background-image: url('https://www.smartertravel.com/uploads/2017/08/Grand-Canyon-%E2%80%93-hero-1400x500.jpg');
+}
+.bg-4{
+  background-image: url('https://a1.r9cdn.net/rimg/dimg/6d/56/5bd0abd4-city-26896-1670df92320.jpg?crop=true&width=1000&height=600&xhint=1567&yhint=925');
+}
+.bg-5{
+  background-image: url('https://cdn4.i-scmp.com/sites/default/files/styles/2000x792/public/images/methode/2018/05/02/0cb3e7a0-42c2-11e8-ab09-36e8e67fb996_4000x1584_134359.jpg?itok=fNVAT4fh');
+}
+.bg-6{
+  background-image: url('https://www.fodors.com/wp-content/uploads/2018/09/HERo_MachuPicchu101_Hero_4_MachuPicchu101_WhereCanIGetBestPhoto_dreamstime_xxl_110067560_2_1.jpg');
 }
 
 h1.title.is-1 {
   font-size: 150px;
-  text-align: center;
+  color:#FBF5F3;
+  padding-top: 200px;
+  text-shadow: 2px 2px 10px #000000;
+}
+h3.title.is-1 {
+  color:#FBF5F3;
+  text-shadow: 2px 2px 10px #000000;
 }
 
+form {
+  padding-top: 60px;
+}
 
+input.input {
+  max-width: 50%;
+}
 
-// .card-image {
-//   .image {
-//     height: 300px;
-//     margin-top: 20px;
-//     background-position: center;
-//     background-size: contain;
-//     background-repeat: no-repeat;
-//   }
-// }
-
+button.button {
+  background-color: #2C497F;
+  color: #FBF5F3;
+  font-weight: bold;
+}
 
 .image {
   height: 100%;
@@ -38,7 +80,7 @@ h1.title.is-1 {
 }
 /* entire container, keeps perspective */
 .flip-container {
-	perspective: 1000px;
+	perspective: 800px;
 }
 	/* flip the pane when hovered */
 	.flip-container:hover .flipper, .flip-container.hover .flipper {
@@ -46,9 +88,8 @@ h1.title.is-1 {
 	}
 
 .flip-container, .front, .back {
-	width: 320px;
+	width: 280px;
 	height: 250px;
-  border-radius: 50px;
 }
 
 /* flip speed goes here */
@@ -73,19 +114,71 @@ h1.title.is-1 {
 	/* for firefox 31 */
 	transform: rotateY(0deg);
 }
+
+div.place-title {
+  width: 100%;
+}
+
 .text-overlay {
+  width: 100%;
+  text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: black;
+  color: white;
   font-size: 35px;
   font-weight: bolder;
+  // background-color: rgba(0,0,0,.2);
+}
+
+#front {
+  text-shadow: 2px 2px 10px #000000;
 }
 
 /* back, initially hidden pane */
 .back {
-  padding-top: 50px;
   font-size: 20px;
 	transform: rotateY(180deg);
+  background-color: rgba(255,255,255,0.2);
+  background-size: cover;
+}
+
+#back {
+  font-size: 18px;
+  color: white;
+  background-color: rgba(0,0,0,0.7);
+  height: 100%;
+  padding-top: 25px;
+}
+
+
+
+//SHOW PAGE
+
+h2.title.is-1 {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+h4.title.is-4 {
+  font-size: 20px;
+  margin: auto;
+  padding: 5px 0 5px 0;
+}
+
+#show-image {
+  height: 200%;
+}
+
+#show-description {
+  margin-top: 175px;
+}
+
+.map {
+  border: 1px solid black;
+  height: 200px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 30px;
 }
