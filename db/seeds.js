@@ -19,28 +19,28 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://www.sungatetours.com/wp-content/uploads/2014/03/Panoramic-View-of-Machu-Pichu-Citadel.jpg',
       descriptLong: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley. Most archaeologists believe that Machu Picchu was built as an estate for the Inca emperor Pachacuti (1438–1472). Often mistakenly referred to as the “Lost City of the Incas” (a title more accurately applied to Vilcabamba), it is the most familiar icon of Inca civilization. The Incas built the estate around 1450 but abandoned it a century later at the time of the Spanish Conquest. Although known locally, it was not known to the Spanish during the colonial period and remained unknown to the outside world until American historian Hiram Bingham brought it to international attention in 1911.',
       descriptShort: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley',
-      geog: [13.1631, 72.5450]
+      geog: [-13.1631, -72.5450]
     },{
       name: 'Niagra Falls',
       country: 'Canada/USA',
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/3Falls_Niagara.jpg/330px-3Falls_Niagara.jpg',
       descriptLong: 'Niagara Falls is to waterfalls as the Great Wall of China is to walls, which is to say, it\'s not your average waterfall. Niagara Falls is really the collective name for three falls that straddle the United States/Canada border, as well as the names of the New York and Ontario cities that share the border. More than 3,000 tons of water thunder over the falls every second, and thousands of tourists are usually there to see it. Whether you plan to view Niagara Falls from the U.S. side or the Canadian side, it\'s possible to enjoy the sights without getting wet. But it\'s not as much fun.',
       descriptShort: 'Niagra Falls is the collective name of the three waterfalls which straddle the international border beween Canada and the Untied States',
-      geog: [43.0799, 79.0747]
+      geog: [43.0799, -79.0747]
     },{
       name: 'Chichen Itza',
       country: 'Mexico',
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Chichen_Itza_3.jpg/540px-Chichen_Itza_3.jpg',
       descriptLong: 'Chichen Itza was a major focal point in the Northern Maya Lowlands from the Late Classic (c. AD 600–900) through the Terminal Classic (c. AD 800–900) and into the early portion of the Postclassic period (c. AD 900–1200). The site exhibits a multitude of architectural styles, reminiscent of styles seen in central Mexico and of the Puuc and Chenes styles of the Northern Maya lowlands. The presence of central Mexican styles was once thought to have been representative of direct migration or even conquest from central Mexico, but most contemporary interpretations view the presence of these non-Maya styles more as the result of cultural diffusion.',
       descriptShort: 'Chichen Itza was a large pre-Columbian city built by the Maya people of the Terminal Classic period. It is located in the Yucatan Peninsula of Mexico',
-      geog: [20.4059, 88.3470]
+      geog: [20.4059, -88.3470]
     },{
       name: 'Uluru',
       country: 'Australia',
       image: 'https://cdn2.veltra.com/ptr/20161216103725_1899709985_13206_0.jpg?imwidth=550&impolicy=custom',
       descriptLong: 'Uluru is sacred to the Pitjantjatjara Anangu, the Aboriginal people of the area. The area around the formation is home to an abundance of springs, waterholes, rock caves and ancient paintings. Uluru is listed as a UNESCO World Heritage Site. Uluru and Kata Tjuta, also known as the Olgas, are the two major features of the Uluṟu-Kata Tjuṯa National Park.',
       descriptShort: 'Uluru, one of Australia\'s most recognisable natural landmarks is a large snadstone rock formation in the Northern Territory in central Austrilia',
-      geog: [25.2042, 131.0210]
+      geog: [-25.2042, 131.0210]
     },{
       name: 'Taj Mahal',
       country: 'India',
@@ -68,14 +68,14 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Moscow_July_2011-16.jpg/330px-Moscow_July_2011-16.jpg',
       descriptLong: 'Red Square is often considered to be the central square of Moscow since the city\'s major streets, which connect to Russia\'s major highways, originate in the square.The rich history of Red Square is reflected in many paintings by Vasily Surikov, Konstantin Yuon and others. The square was meant to serve as Moscow\'s main marketplace. It was also the site of various public ceremonies and proclamations, and occasionally a coronation for Russia\'s Tsars would take place. The square has been gradually built up since that point and has been used for official ceremonies by all Russian governments since it was established.',
       descriptShort: 'Red Square is a square in Moscow, Russia, which separates the Kremlin from a historic merchant quarter known as Kitai-gorod.',
-      geog: [50.4515, 37.3712]
+      geog: [55.7539, 37.3712]
     },{
       name: 'Buckingham Palace',
       country: 'England',
       image: 'https://cdn.getyourguide.com/img/tour_img-1166658-146.jpg',
       descriptLong: 'Originally known as Buckingham House, the building at the core of today\'s palace was a large townhouse built for the Duke of Buckingham in 1703 on a site that had been in private ownership for at least 150 years. It was acquired by King George III in 1761[4] as a private residence for Queen Charlotte and became known as The Queen\'s House. During the 19th century it was enlarged, principally by architects John Nash and Edward Blore, who constructed three wings around a central courtyard. Buckingham Palace became the London residence of the British monarch on the accession of Queen Victoria in 1837. The last major structural additions were made in the late 19th and early 20th centuries, including the East Front, which contains the well-known balcony on which the royal family traditionally congregates to greet crowds. The palace chapel was destroyed by a German bomb during World War II; the Queen\'s Gallery was built on the site and opened to the public in 1962 to exhibit works of art from the Royal Collection.',
       descriptShort: 'Buckingham Palace is the London residence and administrative headquarters of the monarch of the United Kingdom',
-      geog: [51.3030, 0.0831]
+      geog: [51.3030, -0.0831]
     },{
       name: 'Hagia Sophia',
       country: 'Turkey',
@@ -89,7 +89,7 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://www.canyontours.com/wp-content/uploads/2015/01/grand-canyon-south-rim-tour-bright-angel-point.jpg',
       descriptLong: 'The canyon and adjacent rim are contained within Grand Canyon National Park, the Kaibab National Forest, Grand Canyon-Parashant National Monument, the Hualapai Indian Reservation, the Havasupai Indian Reservation and the Navajo Nation. President Theodore Roosevelt was a major proponent of preservation of the Grand Canyon area, and visited it on numerous occasions to hunt and enjoy the scenery. For thousands of years, the area has been continuously inhabited by Native Americans, who built settlements within the canyon and its many caves. The Pueblo people considered the Grand Canyon a holy site, and made pilgrimages to it',
       descriptShort: 'The Grand Canyon is a steep-sided canyon carved by the Colorado River in Arizona, United States. The Grand Canyon is 277 miles long, up to 18 miles wide and attains a depth of over a mile.',
-      geog: [38.18, 112.36]
+      geog: [38.18, -112.36]
     },{
       name: 'The Great Wall of China',
       country: 'China',
