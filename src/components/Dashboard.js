@@ -3,10 +3,6 @@ import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
 import Auth from '../lib/Auth'
 
-const Promise = require('bluebird')
-
-Promise.promisifyAll(navigator.geolocation)
-
 class Dashboard extends React.Component{
 
   constructor(props){
@@ -31,7 +27,7 @@ class Dashboard extends React.Component{
 
   drawTrip(map, markers){
 
-    let angle, opposite, adjacent, direction, move
+    let angle, opposite, adjacent, direction
     const speedFactor = 30 // number of frames per longitude degree
     let startTime = performance.now()
     let progress = 0
@@ -77,24 +73,52 @@ class Dashboard extends React.Component{
       opposite = markers[1].lat - markers[0].lat
       adjacent = markers[1].lng - markers[0].lng
       angle = Math.atan(opposite / adjacent)
-      direction = markers[1].lng - markers[0].lng > 0 ? 'east' : 'west'
+
+      if(Math.abs(markers[1].lng - markers[0].lng)
+        - Math.abs(markers[1].lat - markers[0].lat) >= 0 ){
+        direction = markers[1].lng - markers[0].lng > 0 ? 'west' : 'east'
+      } else {
+        direction = markers[1].lat - markers[0].lat > 0 ? 'north' : 'south'
+      }
     }
 
     function animateLine(timestamp) {
+
       progress = timestamp - startTime
 
-      if(direction === 'east') move = progress / speedFactor
-      else if(direction === 'west') move = - progress / speedFactor
+      let x, y
 
-      var x = move +  markers[0].lng || markers[0].lng // initial point
-      var y = (x - markers[0].lng)  * Math.tan(angle) + markers[0].lat|| markers[0].lat
+      switch(direction){
+        case 'north':
+          y = progress / speedFactor +  markers[0].lat || markers[0].lat
+          x = (y - markers[0].lat)  / Math.tan(angle) + markers[0].lng|| markers[0].lng
+          break
+        case 'west':
+          x =  progress / speedFactor +  markers[0].lng || markers[0].lng
+          y = (x - markers[0].lng)  * Math.tan(angle) + markers[0].lat|| markers[0].lat
+          break
+        case 'south':
+          y = - progress / speedFactor +  markers[0].lat || markers[0].lat
+          x = (y - markers[0].lat)  / Math.tan(angle) + markers[0].lng|| markers[0].lng
+          break
+        case 'east':
+          x =  - progress / speedFactor +  markers[0].lng || markers[0].lng
+          y = (x - markers[0].lng)  * Math.tan(angle) + markers[0].lat|| markers[0].lat
+          break
+      }
+
       // append new coordinates to the lineString
       geojson.features[0].geometry.coordinates.push([x, y])
       // then update the map
       map.getSource('line-animation').setData(geojson)
 
       //
-      if(x > markers[1].lng && direction === 'east' || x < markers[1].lng && direction === 'west'){
+      if(x < markers[1].lng && direction === 'east' ||
+        x > markers[1].lng && direction === 'west' ||
+        y > markers[1].lat && direction === 'north' ||
+        y < markers[1].lat && direction === 'south'
+      ){
+        console.log(markers[1].lng + ' ' + x)
         markers.shift()
         if(markers.length < 2) return
         startTime = timestamp
@@ -113,7 +137,7 @@ class Dashboard extends React.Component{
       markerDOM.setAttribute('class', 'marker')
       markerDOM.setAttribute('src', 'https://s1.qwant.com/thumbr/0x380/9/3/956b158d13001c1f57346b9fa0932fa2bc0aba7071bdc679d34e390524c1da/2000px-Map_marker.svg.png?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F8%2F88%2FMap_marker.svg%2F2000px-Map_marker.svg.png&q=0&b=1&p=0&a=1')
 
-      const markers = new mapboxgl.Marker({element: markerDOM, anchor: 'bottom'})
+      const markers = new mapboxgl.Marker({element: markerDOM, anchor: 'bottom'})// eslint-disable-line no-unused-vars
         .setLngLat([String(geoCoord.lng), String(geoCoord.lat)])
         .addTo(this.map)
     })
@@ -161,10 +185,10 @@ class Dashboard extends React.Component{
       .then(({coords}) => this.addUserLocationToTrip(coords))
       .then(() => this.createMap())
       .then(() => this.createMarkups())
-      .then(() => this.map.on('load', () =>
-        this.markersCoord.length >= 2 &&
-          this.drawTrip(this.map, this.markersCoord)))
-
+      .then(() => this.map.on('load', () => {
+        if(this.markersCoord.length >= 2)
+          this.drawTrip(this.map, this.markersCoord)
+      }))
   }
 
   render(){
