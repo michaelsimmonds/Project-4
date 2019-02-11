@@ -12,7 +12,7 @@ import PlacesIndex from './components/places/PlacesIndex'
 import PlacesShow from './components/places/PlacesShow'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-
+import Dashboard from './components/dashboard'
 
 class App extends React.Component {
   render() {
@@ -21,6 +21,7 @@ class App extends React.Component {
         <main>
           <NavBar />
           <Switch>
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/places/:id" component={PlacesShow} />
             <Route path="/places" component={PlacesIndex} />
             <Route path="/register" component={Register} />
