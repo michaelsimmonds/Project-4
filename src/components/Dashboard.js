@@ -106,8 +106,8 @@ class Dashboard extends React.Component{
   }
 
   createMarkups(){
-    console.log(this.markersCoord)
-    this.markersCoord.forEach(geoCoord => {
+
+    this.markersCoord && this.markersCoord.forEach(geoCoord => {
 
       const markerDOM = document.createElement('img')
       markerDOM.setAttribute('class', 'marker')
@@ -120,7 +120,6 @@ class Dashboard extends React.Component{
   }
 
   createMap(){
-
     mapboxgl.accessToken = process.env.MAPBOX_KEY
     this.map = new mapboxgl.Map({
       container: this.mapDOMElement,
@@ -128,24 +127,21 @@ class Dashboard extends React.Component{
       center: [0, 0],
       zoom: 1
     })
-
   }
 
-  addUserLocalisation(markersCoord){
-    let userLocation
-
-    navigator.geolocation
-      .getCurrentPositionAsync()
-      .then(pos => userLocation = pos.coords)
-      .catch(err => console.warn(err))
-
-    if(userLocation){
+  addUserLocationToTrip(coords){
+    if(coords){
       return this.markersCoord.unshift({
-        lat: userLocation.latitude,
-        lng: userLocation.longitude
+        lat: coords.latitude,
+        lng: coords.longitude
       })
-    } else return markersCoord
+    }
+  }
 
+  getUserLocation(){
+    return new Promise(function (resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+    })
   }
 
   getMarkersCoord({places}){
@@ -161,10 +157,13 @@ class Dashboard extends React.Component{
 
     axios(`api/users/${user.sub}`)
       .then(({data}) => this.getMarkersCoord(data))
-      .then(() => this.addUserLocalisation())
+      .then(() => this.getUserLocation())
+      .then(({coords}) => this.addUserLocationToTrip(coords))
       .then(() => this.createMap())
       .then(() => this.createMarkups())
-      .then(() => this.map.on('load', () => this.drawTrip(this.map, this.markersCoord)))
+      .then(() => this.map.on('load', () =>
+        this.markersCoord.length >= 2 &&
+          this.drawTrip(this.map, this.markersCoord)))
 
   }
 
