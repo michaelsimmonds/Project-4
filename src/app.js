@@ -15,13 +15,17 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Dashboard from './components/dashboard'
 import SecureRoute from './components/common/SecureRoute'
+import FlashMessage from './components/common/FlashMessage'
 
 class App extends React.Component {
   render() {
     return(
       <BrowserRouter>
         <main>
+
           <NavBar />
+          <FlashMessage/>
+
           <Switch>
             <SecureRoute path="/dashboard" component={Dashboard} />
             <Route path="/places/:id" component={PlacesShow} />
