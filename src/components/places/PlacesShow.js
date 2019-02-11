@@ -35,15 +35,26 @@ class PlacesShow extends React.Component {
             <div className="column">
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
-              <hr />
 
-              <h4 className="title is-4">Description</h4>
-              <p>{descriptLong}</p>
-              <hr />
+
+              <h4 className="title is-4">Budget</h4>
+              <p>£20/day</p>
+
+
+              <h4 className="title is-4">Best time to visit</h4>
+              <p>July to October</p>
+
+
+              
             </div>
           </div>
         </div>
+        <div className="container">
+          <h4 className="title is-4">Description</h4>
+          <p>{descriptLong}</p>
+        </div>
       </section>
+
     )
   }
 }
