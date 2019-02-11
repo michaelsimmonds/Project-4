@@ -6,21 +6,8 @@
 
 h1.title.is-1 {
   font-size: 150px;
-  text-align: center;
+
 }
-
-
-
-// .card-image {
-//   .image {
-//     height: 300px;
-//     margin-top: 20px;
-//     background-position: center;
-//     background-size: contain;
-//     background-repeat: no-repeat;
-//   }
-// }
-
 
 .image {
   height: 100%;
@@ -32,7 +19,7 @@ h1.title.is-1 {
 
 /* entire container, keeps perspective */
 .flip-container {
-	perspective: 1000px;
+	perspective: 800px;
 }
 	/* flip the pane when hovered */
 	.flip-container:hover .flipper, .flip-container.hover .flipper {
@@ -40,9 +27,8 @@ h1.title.is-1 {
 	}
 
 .flip-container, .front, .back {
-	width: 320px;
+	width: 280px;
 	height: 250px;
-  border-radius: 50px;
 }
 
 /* flip speed goes here */
@@ -75,11 +61,12 @@ h1.title.is-1 {
   color: black;
   font-size: 35px;
   font-weight: bolder;
+  background-color: rgba(211,211,211,.4);
 }
 
 /* back, initially hidden pane */
 .back {
-  padding-top: 50px;
+  padding-top: 35px;
   font-size: 20px;
 	transform: rotateY(180deg);
 }
