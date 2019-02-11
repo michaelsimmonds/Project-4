@@ -11,7 +11,6 @@ class Dashboard extends React.Component{
   constructor(){
     super()
     this.state = {
-      geoCoord: {},
       markersCoord: [],
       map: {},
       mapDOMElement: '',
@@ -41,6 +40,92 @@ class Dashboard extends React.Component{
     this.drawTrip = this.drawTrip.bind(this)
     this.calculateDirection = this.calculateDirection.bind(this)
 
+  }
+
+  calculateDirection(){
+    const opposite = this.markersCoord[1].lat - this.markersCoord[0].lat
+    const adjacent = this.markersCoord[1].lng - this.markersCoord[0].lng
+
+    return {
+      angle: Math.atan(opposite / adjacent),
+      direction: this.markersCoord[1].lng - this.markersCoord[0].lng > 0 ? 'east' : 'west'
+    }
+  }
+
+  drawTrip(map, markers){
+
+    let angle, opposite, adjacent, direction, move
+    const speedFactor = 30 // number of frames per longitude degree
+    let startTime = performance.now()
+    let progress = 0
+
+    // Create a GeoJSON source with an empty lineString.
+    const geojson = {
+      'type': 'FeatureCollection',
+      'features': [{
+        'type': 'Feature',
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': [
+            [markers[0].lng, markers[0].lat]
+          ] //Starting point
+        }
+      }]
+    }
+    // add the line which will be modified in the animation
+    map.addLayer({
+      'id': 'line-animation',
+      'type': 'line',
+      'source': {
+        'type': 'geojson',
+        'data': geojson
+      },
+      'layout': {
+        'line-cap': 'round',
+        'line-join': 'round'
+      },
+      'paint': {
+        'line-color': '#ed6498',
+        'line-width': 5,
+        'line-opacity': .8
+      }
+    })
+
+    //Calculate angle of the trajectory
+    calculateTrajectory()
+
+    animateLine()
+
+    function calculateTrajectory(){
+      opposite = markers[1].lat - markers[0].lat
+      adjacent = markers[1].lng - markers[0].lng
+      angle = Math.atan(opposite / adjacent)
+      direction = markers[1].lng - markers[0].lng > 0 ? 'east' : 'west'
+    }
+
+    function animateLine(timestamp) {
+      progress = timestamp - startTime
+
+      if(direction === 'east') move = progress / speedFactor
+      else if(direction === 'west') move = - progress / speedFactor
+
+      var x = move +  markers[0].lng || markers[0].lng // initial point
+      var y = (x - markers[0].lng)  * Math.tan(angle) + markers[0].lat|| markers[0].lat
+      // append new coordinates to the lineString
+      geojson.features[0].geometry.coordinates.push([x, y])
+      // then update the map
+      map.getSource('line-animation').setData(geojson)
+
+      //
+      if(x > markers[1].lng && direction === 'east' || x < markers[1].lng && direction === 'west'){
+        markers.shift()
+        if(markers.length < 2) return
+        startTime = timestamp
+        calculateTrajectory()
+      }
+      // Request the next frame of the animation.
+      requestAnimationFrame(animateLine)
+    }
   }
 
   createMarkups(){
@@ -82,8 +167,7 @@ class Dashboard extends React.Component{
         lat: userLocation.latitude,
         lng: userLocation.longitude
       })
-    }
-    else return markersCoord
+    } else return markersCoord
 
   }
 
@@ -95,97 +179,6 @@ class Dashboard extends React.Component{
     return true
   }
 
-
-  calculateDirection(){
-    const opposite = this.markersCoord[1].lat - this.markersCoord[0].lat
-    const adjacent = this.markersCoord[1].lng - this.markersCoord[0].lng
-
-    return {
-      angle: Math.atan(opposite / adjacent),
-      direction: this.markersCoord[1].lng - this.markersCoord[0].lng > 0 ? 'east' : 'west'
-    }
-  }
-
-
-  drawTrip(map){
-    const markers = this.markersCoord
-    let angle, opposite, adjacent, direction, move
-    var speedFactor = 30 // number of frames per longitude degree
-    var animation // to store and cancel the animation
-    var startTime = 0
-    var progress = 0 // progress = timestamp - startTime
-    // Create a GeoJSON source with an empty lineString.
-    var geojson = {
-      'type': 'FeatureCollection',
-      'features': [{
-        'type': 'Feature',
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': [
-            [markers[0].lng, markers[0].lat]
-          ] //Starting point
-        }
-      }]
-    }
-    // add the line which will be modified in the animation
-    map.addLayer({
-      'id': 'line-animation',
-      'type': 'line',
-      'source': {
-        'type': 'geojson',
-        'data': geojson
-      },
-      'layout': {
-        'line-cap': 'round',
-        'line-join': 'round'
-      },
-      'paint': {
-        'line-color': '#ed6498',
-        'line-width': 5,
-        'line-opacity': .8
-      }
-    })
-
-    startTime = performance.now()
-
-    //Calculate angle of the trajectory
-    calculateAngleOfTrajectory()
-
-    animateLine()
-
-
-    function calculateAngleOfTrajectory(){
-      opposite = markers[1].lat - markers[0].lat
-      adjacent = markers[1].lng - markers[0].lng
-      angle = Math.atan(opposite / adjacent)
-      direction = markers[1].lng - markers[0].lng > 0 ? 'east' : 'west'
-    }
-
-    function animateLine(timestamp) {
-      progress = timestamp - startTime
-
-      if(direction === 'east') move = progress / speedFactor
-      else if(direction === 'west') move = - progress / speedFactor
-
-      var x = move +  markers[0].lng || markers[0].lng // initial point
-      // draw a sine wave with some math.
-      var y = (x - markers[0].lng)  * Math.tan(angle) + markers[0].lat|| markers[0].lat
-      // append new coordinates to the lineString
-      geojson.features[0].geometry.coordinates.push([x, y])
-      // then update the map
-      map.getSource('line-animation').setData(geojson)
-
-      // Request the next frame of the animation.
-      if(x > markers[1].lng && direction === 'east' || x < markers[1].lng && direction === 'west'){
-        markers.shift()
-        if(markers.length < 2) return
-        startTime = timestamp
-        calculateAngleOfTrajectory()
-      }
-      animation = requestAnimationFrame(animateLine)
-    }
-  }
-
   componentDidMount(){
 
     axios('api/places')
@@ -193,7 +186,7 @@ class Dashboard extends React.Component{
       .then(() => this.addUserLocalisation())
       .then(() => this.createMap())
       .then(() => this.createMarkups())
-      .then(() => this.map.on('load', () => this.drawTrip(this.map)))
+      .then(() => this.map.on('load', () => this.drawTrip(this.map, this.markersCoord)))
 
   }
 
