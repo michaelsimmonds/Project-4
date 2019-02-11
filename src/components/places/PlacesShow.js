@@ -48,9 +48,13 @@ class PlacesShow extends React.Component {
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container" id="show-description">
           <h4 className="title is-4">Description</h4>
           <p>{descriptLong}</p>
+        </div>
+
+        <div className="container">
+          <div className="map">MAP GOES HERE</div>
         </div>
       </section>
 

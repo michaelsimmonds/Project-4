@@ -1,3 +1,8 @@
+body {
+  background-color: #D6E1EE;
+  min-height: 100vh;
+}
+
 .navbar {
   background: #2C497F;
   .navbar-item{
@@ -5,7 +10,6 @@
   font-weight: bold;
   }
 }
-
 
 .hero-body {
   background-image: url('http://7428.net/wp-content/uploads/2013/10/Free-World-Map-Vector.png');
@@ -76,10 +80,13 @@ div.place-title {
   color: white;
   font-size: 35px;
   font-weight: bolder;
-  text-shadow: 2px 2px 10px #000000;
   // background-color: rgba(0,0,0,.2);
 }
 
+#front {
+  text-shadow: 2px 2px 10px #000000;
+
+}
 
 /* back, initially hidden pane */
 .back {
@@ -103,13 +110,27 @@ div.place-title {
 
 h2.title.is-1 {
   text-align: center;
+  margin-bottom: 1.5em;
 }
 
 h4.title.is-4 {
   font-size: 20px;
   margin: auto;
+  padding: 5px 0 5px 0;
 }
 
-.description-container.is-fluid {
-  align-content: center;
+#show-image {
+  height: 200%;
+}
+
+#show-description {
+  margin-top: 175px;
+}
+
+.map {
+  border: 1px solid black;
+  height: 200px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 30px;
 }
