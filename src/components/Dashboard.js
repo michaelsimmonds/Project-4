@@ -1,6 +1,7 @@
 import React from 'react'
 import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
+import Auth from '../lib/Auth'
 
 const Promise = require('bluebird')
 
@@ -8,34 +9,13 @@ Promise.promisifyAll(navigator.geolocation)
 
 class Dashboard extends React.Component{
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+
     this.state = {
       markersCoord: [],
       map: {},
-      mapDOMElement: '',
-      data: {
-        username: 'admin',
-        email: 'admin',
-        places: [
-          {
-            name: 'Machu Picchu',
-            country: 'Peru',
-            image: 'https://www.sungatetours.com/wp-content/uploads/2014/03/Panoramic-View-of-Machu-Pichu-Citadel.jpg',
-            descriptLong: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley. Most archaeologists believe that Machu Picchu was built as an estate for the Inca emperor Pachacuti (1438–1472). Often mistakenly referred to as the “Lost City of the Incas” (a title more accurately applied to Vilcabamba), it is the most familiar icon of Inca civilization. The Incas built the estate around 1450 but abandoned it a century later at the time of the Spanish Conquest. Although known locally, it was not known to the Spanish during the colonial period and remained unknown to the outside world until American historian Hiram Bingham brought it to international attention in 1911.',
-            descriptShort: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley',
-            geog: [-13.1631, -72.5450]
-          },
-          {
-            name: 'Uluru',
-            country: 'Australia',
-            image: 'https://cdn2.veltra.com/ptr/20161216103725_1899709985_13206_0.jpg?imwidth=550&impolicy=custom',
-            descriptLong: 'Uluru is sacred to the Pitjantjatjara Anangu, the Aboriginal people of the area. The area around the formation is home to an abundance of springs, waterholes, rock caves and ancient paintings. Uluru is listed as a UNESCO World Heritage Site. Uluru and Kata Tjuta, also known as the Olgas, are the two major features of the Uluṟu-Kata Tjuṯa National Park.',
-            descriptShort: 'Uluru, one of Australia\'s most recognisable natural landmarks is a large snadstone rock formation in the Northern Territory in central Austrilia',
-            geog: [-25.2042, 131.0210]
-          }
-        ]
-      }
+      mapDOMElement: ''
     }
   }
 
@@ -168,18 +148,19 @@ class Dashboard extends React.Component{
 
   }
 
-  getMarkersCoord(){
-    this.markersCoord = this.state.data.places.map(place => {
+  getMarkersCoord({places}){
+    this.markersCoord = places.map(place => {
       return ({lat: place.geog[0], lng: place.geog[1]})
     })
-    console.log(this.markersCoord)
     return true
   }
 
   componentDidMount(){
 
-    axios('api/places')
-      .then(() => this.getMarkersCoord())
+    const user = Auth.getPayload()
+
+    axios(`api/users/${user.sub}`)
+      .then(({data}) => this.getMarkersCoord(data))
       .then(() => this.addUserLocalisation())
       .then(() => this.createMap())
       .then(() => this.createMarkups())
