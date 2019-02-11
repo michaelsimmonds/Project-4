@@ -28,10 +28,10 @@ class Home extends React.Component{
           <div className="container">
             <Link to="/places">
               <h1 className="title is-1">
-              Plan your trip
+              Explore...
               </h1>
             </Link>
-            <h3 className="title is-1">text here about the purpose of our website</h3>
+            <h3 className="title is-1">Plan your next big trip with us</h3>
           </div>
         </div>
       </section>
