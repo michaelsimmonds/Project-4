@@ -37,8 +37,6 @@ class Dashboard extends React.Component{
         ]
       }
     }
-    this.drawTrip = this.drawTrip.bind(this)
-    this.calculateDirection = this.calculateDirection.bind(this)
 
   }
 
