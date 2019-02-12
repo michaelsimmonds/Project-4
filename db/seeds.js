@@ -105,8 +105,7 @@ mongoose.connect(config.dbURI, (err, db) => {
         email: 'admin',
         password: 'admin',
         passwordConfirmation: 'admin',
-        places: [seedPlaces[0], seedPlaces[1], seedPlaces[2]],
-        location: []
+        places: [seedPlaces[0], seedPlaces[1], seedPlaces[2]]
       })
     })
     .then((user) => seedUser = user)
