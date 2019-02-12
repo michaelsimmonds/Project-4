@@ -40,6 +40,9 @@ class NavBar extends React.Component {
             <Link className="navbar-item" to="/">
               <strong>Home</strong>
             </Link>
+            <Link className="navbar-item" to="/places">Discover</Link>
+            {Auth.isAuthenticated() &&
+              <Link className="navbar-item" to="/dashboard">MyTrip</Link>}
 
             <a
               className={`navbar-burger ${this.state.NavBarOpen ? 'is-active' : ''}`}
@@ -52,7 +55,7 @@ class NavBar extends React.Component {
           </div>
           <div className={`navbar-menu ${this.state.navBarOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-              <Link className="navbar-item" to="/places">Discover</Link>
+
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
               {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}

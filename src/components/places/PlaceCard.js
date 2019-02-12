@@ -10,10 +10,11 @@ const PlaceCard = ({ _id, name, descriptShort, image }) => {
         <div className="flipper">
           <div className="front">
             <figure className="image" style={{ backgroundImage: `url(${image})`}} />
-            <h3 className="text-overlay">{name}</h3>
+            <div className="text-overlay" id="front">{name}</div>
           </div>
           <div className="back">
-            <h3>{descriptShort}</h3>
+            <figure className="image" style={{ backgroundImage: `url(${image})`}} />
+            <div className="text-overlay" id="back">{descriptShort}</div>
           </div>
         </div>
       </Link>

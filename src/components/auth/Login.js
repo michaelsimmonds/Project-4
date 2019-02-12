@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 import Auth from '../../lib/Auth'
+import Flash from '../../lib/Flash'
 
 class Login extends React.Component {
   constructor() {
@@ -23,7 +24,8 @@ class Login extends React.Component {
       .post('/api/login', this.state.data)
       .then((res) => {
         Auth.setToken(res.data.token)
-        this.props.history.push('/places')
+        Flash.setMessage('success', res.data.message)
+        this.props.history.push('/dashboard')
       })
       .catch(err => alert(err.message))
   }
@@ -38,31 +40,35 @@ class Login extends React.Component {
     return(
       <main className="section">
         <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <h2 className="title">Login</h2>
-            <div className="field">
-              <label className="label">Email</label>
-              <input
-                className="input"
-                name="email"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
+          <div className="columns">
+            <div className="column is-offset-4">
+              <form onSubmit={this.handleSubmit}>
+                <h2 className="title">Login</h2>
+                <div className="field">
+                  <label className="label">Email</label>
+                  <input
+                    className="input"
+                    name="email"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="field">
+                  <label className="label">Password</label>
+                  <input
+                    className="input"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <button className="button">Log in</button>
+              </form>
             </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <input
-                className="input"
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <button className="button is-dark">Log in</button>
-          </form>
+          </div>
         </div>
       </main>
     )
