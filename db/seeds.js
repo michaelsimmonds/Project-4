@@ -154,6 +154,34 @@ mongoose.connect(config.dbURI, (err, db) => {
       descriptShort: 'Iguazú Falls or Iguaçu Falls are waterfalls of the Iguazu River on the border of the Argentine province of Misiones and the Brazilian state of Paraná. Together, they make up the largest waterfall system in the world.',
       geog: [-25.686, -54.444]
     },{
+      name: 'Termas Geometricas',
+      country: 'Chile',
+      image: 'https://media.timeout.com/images/105319467/750/562/image.jpg',
+      descriptLong: 'Drive for an hour on a bumpy dirt road in rural Chile for a great reward: 17 natural hot springs tucked into a narrow canyon of verdant rainforest. Japanese-inspired redwood walkways connect the steaming pools, which vary in size and temperature (there are multiple cool-down options: three plunge pools and two human-made waterfalls). The swirl of steam continuously alters your perspective as you gaze through the trees, and changing rooms have grass planted on the roofs. Be sure to visit the café pre- or post-soak, which is heated by an outdoor oven built into the wall and offers piping hot, locally grown coffee.',
+      descriptShort: 'This Japanese-inspired labyrinth of hot springs is hidden in a Chilean forest. Nestled in an almost unbelievably lush forest canyon in Chile, the hot spring spa known as Termas Geometricas is a stunning maze of red planks that wind through the trees.',
+      geog: [39.500, 71.874]
+    },{
+      name: 'Redwood National Park',
+      country: 'California, USA',
+      image: 'https://icdn7.themanual.com/image/themanual/sequioa-trees-1200x675.jpg',
+      descriptLong: 'Redwood National and State Parks are a string of protected forests, beaches and grasslands along Northern California’s coast. Jedediah Smith Redwoods State Park has trails through dense old-growth woods. Prairie Creek Redwoods State Park is home to Fern Canyon, with its high, plant-covered walls. Roosevelt elk frequent nearby Elk Prairie. Giant redwood clusters include Redwood National Park’s Lady Bird Johnson Grove.',
+      descriptShort: 'Look up to soaring redwoods while hiking or driving through this series of stunning National and State parks.',
+      geog: [41.3, -124]
+    },{
+      name: 'Gierangerfjord',
+      country: 'Norway',
+      image: 'https://disneycruiselineblog.com/wp-content/uploads/2015/02/DCL-Port-Adventures-Geiranger-Norway.jpg',
+      descriptLong: 'The iconic Geirangerfjord is considered one of the most beautiful fjords in the world, and is included on the UNESCO World Heritage list together with the Nærøyfjord. The Geirangerfjord is one of Norway’s most popular natural attractions. The fjord is 260 metres deep while the surrounding mountains are 1600-1700 metres high. The fjord is also known for its spectacular waterfalls and deserted fjord farms high up on the steep cliffsides. The idyllic nature and the dramatic mountains will impress any visitor in the area. The now deserted fjord farms tell the tales of a different time and way of life. You can visit some of the farms, such as Skageflå, Knivsflå, Blomberg, Matvik, Syltevik and Westerås. You can spend the night at Westerås, sample the local food served at the outdoor restaurant, whilst enjoying the spectacular view of the fjord below.',
+      descriptShort: 'The Geiranger Fjord is a fjord in the Sunnmøre region of Møre og Romsdal county, Norway',
+      geog: [62.121, 7.129]
+    },{
+      name: 'Northern Lights',
+      country: 'Iceland',
+      image: 'https://s3.eu-west-2.amazonaws.com/tourhound/pages//Northern_Lights.jpg',
+      descriptLong: 'Only in a handful of places in the world do you have so many opportunities to catch this incredible phenomenon. Norway, Finland, northern Canada (particularly Yellowknife) and Alaska (particularly Fairbanks) boast similar experiences, but while many of these places have longer hours of darkness in winter, they all face more challenges when it comes to cloud cover. Iceland, therefore, is an optimal destination to come to in order to tick seeing the Northern Lights off of your bucket list.The Northern Lights are the visual result of solar particles entering the earth’s magnetic field at high atmosphere, and ionising. Their intensity depends on the activity of the sun, and the acceleration speed of these particles. They appear as dancing lights high in the sky and vary in colour, usually being green, but occasionally also purple, red, pink, orange and blue. Their colours depend on the elements being ionised.',
+      descriptShort: 'Icelanders are privileged when it comes to the Northern Lights. They are visible for eight months a year, from early September to the end of April and in any of these months, you are likely to see some aurora activity—it just depends on your luck, the weather and solar activity.',
+      geog: [64.133, -21.933]
+    },{
       name: 'Volcanoes National Park',
       country: 'Rwanda',
       image: 'http://www.adventure-travellers.com/imgs/aat-images/2-days-gorillas-rwanda.jpg',
