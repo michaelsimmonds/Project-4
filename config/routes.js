@@ -12,7 +12,13 @@ router.route('/login')
   .post(authController.login)
 
 router.route('/places')
-  .get(placesController.index)
+  .get((req, res, next) => {
+    if(req.headers.authorization === 'Bearer null'){
+      console.log(req.headers)
+      console.log('yeah')
+      secureRoute(req,res,next)
+    }
+  },placesController.index)
   .post(secureRoute, placesController.create)
 
 router.route('/places/:id')
