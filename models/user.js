@@ -5,9 +5,8 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  places: { type: Array },
-  location: { type: Array },
-  admin: { type: Boolean, default: false }
+  places: [ {type: mongoose.Schema.ObjectId, ref: 'Place', required: true} ],
+  location: {type: Array }
 })
 
 userSchema.virtual('passwordConfirmation')

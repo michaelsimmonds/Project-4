@@ -2,6 +2,7 @@ import React from 'react'
 import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
 import Auth from '../lib/Auth'
+import UserTrips from './USerTrips'
 
 class Dashboard extends React.Component{
 
@@ -149,6 +150,7 @@ class Dashboard extends React.Component{
       container: this.mapDOMElement,
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [0, 0],
+      scrollZoom: false,
       zoom: 1
     })
   }
@@ -168,19 +170,26 @@ class Dashboard extends React.Component{
     })
   }
 
-  getMarkersCoord({places}){
-    this.markersCoord = places.map(place => {
-      return ({lat: place.geog[0], lng: place.geog[1]})
+  getMarkerCoords(places){
+    return new Promise(resolve => {
+      this.markersCoord = places.map(place =>
+        ({ lat: place.geog[0], lng: place.geog[1] })
+      )
+      resolve()
     })
-    return true
   }
 
   componentDidMount(){
 
     const user = Auth.getPayload()
 
-    axios(`api/users/${user.sub}`)
-      .then(({data}) => this.getMarkersCoord(data))
+    axios(`/api/users/${user.sub}`)
+      .then(({ data }) => this.setState({ user: data }))
+  }
+
+  componentDidUpdate(){
+
+    this.getMarkerCoords(this.state.user.places)
       .then(() => this.getUserLocation())
       .then(({coords}) => this.addUserLocationToTrip(coords))
       .then(() => this.createMap())
@@ -193,7 +202,10 @@ class Dashboard extends React.Component{
 
   render(){
     return(
-      <div id='map' ref={element => this.mapDOMElement = element}/>
+      <section>
+        <div id='map' ref={element => this.mapDOMElement = element}/>
+        {this.state.user && <UserTrips places={this.state.user.places}/>}
+      </section>
     )
   }
 }

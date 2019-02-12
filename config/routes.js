@@ -23,5 +23,7 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(usersController.show)
+  .put(secureRoute, usersController.update)
+
 
 module.exports = router

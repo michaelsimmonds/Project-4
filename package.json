@@ -22,6 +22,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "mapbox-gl": "^0.53.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.4.10",
     "react": "^16.8.1",
     "react-background-slider": "^1.2.0",
