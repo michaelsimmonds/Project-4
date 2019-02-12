@@ -185,10 +185,16 @@ h4.title.is-4 {
   margin-top: 175px;
 }
 
-.map {
-  border: 1px solid black;
-  height: 200px;
-  margin-top: 20px;
+//DASHBOARD
+.dash-title {
   text-align: center;
-  font-size: 30px;
+  font-size: 50px;
+  padding-top: 15px;
+  margin: none;
+}
+#map {
+  margin: auto;
+  height: 600px;
+  width: 1020px;
+  margin-top: 15px;
 }
