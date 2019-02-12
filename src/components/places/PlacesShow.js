@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 import Auth from '../../lib/Auth'
+import Flash from '../../lib/Flash'
 
 class PlacesShow extends React.Component {
 
@@ -9,7 +10,22 @@ class PlacesShow extends React.Component {
     super()
 
     this.state = {}
+    this.addPlaceToMyTrip = this.addPlaceToMyTrip.bind(this)
 
+  }
+
+  addPlaceToMyTrip(){
+
+    const user = Auth.getPayload()
+    console.log(user, this.props.match.params.id)
+    axios
+      .put(`/api/users/${user.sub}`, {place: this.props.match.params.id}, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
+      .then(() => {
+        Flash.setMessage('success', 'New trip added to you dashboard')
+        this.props.history.push('/dashboard')
+      })
   }
 
   componentDidMount() {
@@ -27,7 +43,10 @@ class PlacesShow extends React.Component {
         <div className="container">
           <h2 className="title is-1">{name}</h2>
           {Auth.isAuthenticated() &&
-          <button className="button" id="add">Add to My Trip</button>}
+          <button
+            className="button"
+            id="add"
+            onClick={this.addPlaceToMyTrip}>Add to My Trip</button>}
 
           <div className="columns">
             <div className="column">
