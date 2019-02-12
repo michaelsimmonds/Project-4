@@ -15,9 +15,9 @@ class PlacesIndex extends React.Component {
 
   componentDidMount() {
     //If user is logged in, only show the place he doesn't have already picked.
-    const token = Auth.isAuthenticated ? Auth.getToken() : ''
     axios.get('/api/places', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: Auth.isAuthenticated() ?
+        { Authorization: `Bearer ${Auth.getToken()}`} : null
     })
       .then(res => this.setState({ places: res.data }))
   }

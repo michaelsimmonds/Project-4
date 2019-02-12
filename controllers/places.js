@@ -3,13 +3,15 @@ const Place = require('../models/place')
 function indexRoute( req, res ){
   Place
     .find()
-    .then(places => places.filter(place => {
-      let toBeKept = true
-      req.currentUser.places.forEach(el => {
-        if(el.equals(place._id)) toBeKept = false
+    .then(places => {
+      return places.filter(place => {
+        let toBeKept = true
+        if(req.currentUser) req.currentUser.places.forEach(el => {
+          if(el.equals(place._id)) toBeKept = false
+        })
+        return toBeKept
       })
-      return toBeKept
-    }))
+    })
     .then(places => res.status(200).json(places))
 }
 
