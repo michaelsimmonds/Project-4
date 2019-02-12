@@ -83,6 +83,12 @@ button.button {
   background-repeat: no-repeat;
 }
 
+#map{
+  height: 100vh;
+}
+.marker{
+  max-width: 20px;
+}
 /* entire container, keeps perspective */
 .flip-container {
 	perspective: 800px;
