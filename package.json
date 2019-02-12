@@ -26,6 +26,7 @@
     "react": "^16.8.1",
     "react-background-slider": "^1.2.0",
     "react-dom": "^16.8.1",
+    "react-mapbox-autocomplete": "^0.2.3",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
