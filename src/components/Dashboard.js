@@ -252,7 +252,7 @@ class Dashboard extends Component{
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <PlaceCard {...item} frontOnly="true"/>
+                            <PlaceCard {...item} userHasTrip="true" frontOnly="true"/>
                           </div>
                         )}
                       </Draggable>

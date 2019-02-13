@@ -19,7 +19,13 @@ function showRoute(req, res) {
 
 function updateRoute(req, res) {
   //Add a new place to the user place list
-  req.currentUser.places.push(req.body.place)
+  console.log('removing');
+  if(req.body.action === 'add') req.currentUser.places.push(req.body.place)
+  else if(req.body.action === 'remove') {
+    const index = req.currentUser.places.indexOf(req.body.place)
+    req.currentUser.places.splice(index, 1)
+  }
+
   req.currentUser.save()
     .then(user => User.populate(user, { path: 'places'}))
     .then(user => res.json(user))

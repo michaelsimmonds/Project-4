@@ -11,6 +11,7 @@ class PlacesShow extends React.Component {
 
     this.state = {}
     this.addPlaceToMyTrip = this.addPlaceToMyTrip.bind(this)
+    this.removePlaceToMyTrip = this.removePlaceToMyTrip.bind(this)
 
   }
 
@@ -19,11 +20,23 @@ class PlacesShow extends React.Component {
     const user = Auth.getPayload()
     console.log(user, this.props.match.params.id)
     axios
-      .put(`/api/users/${user.sub}`, {place: this.props.match.params.id}, {
+      .put(`/api/users/${user.sub}`, {place: this.props.match.params.id, action: 'add'}, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(() => {
         Flash.setMessage('success', 'New trip added to you dashboard')
+        this.props.history.push('/dashboard')
+      })
+  }
+  removePlaceToMyTrip(){
+    const user = Auth.getPayload()
+    console.log(user, this.props.match.params.id)
+    axios
+      .put(`/api/users/${user.sub}`, {place: this.props.match.params.id, action: 'remove'}, {
+        headers: { Authorization: `Bearer ${Auth.getToken()}` }
+      })
+      .then(() => {
+        Flash.setMessage('success', 'New trip remove from you dashboard')
         this.props.history.push('/dashboard')
       })
   }
@@ -36,6 +49,7 @@ class PlacesShow extends React.Component {
 
 
   render() {
+    console.log(this.props.location.pathname.includes('user'))
     if(!this.state.place) return null
     const { name, country, image, descriptLong } = this.state.place
     return(
@@ -43,11 +57,19 @@ class PlacesShow extends React.Component {
         <div className="container">
           <h2 className="title is-1">{name}</h2>
           {Auth.isAuthenticated() &&
-          <button
-            className="button"
-            id="add"
-            onClick={this.addPlaceToMyTrip}>Add to My Trip</button>}
-
+            !this.props.location.pathname.includes('user') &&
+              <button
+                className="button"
+                id="add"
+                onClick={this.addPlaceToMyTrip}>Add to My Trip</button>
+          }
+          {Auth.isAuthenticated() &&
+            this.props.location.pathname.includes('user') &&
+              <button
+                className="button"
+                id="remove"
+                onClick={this.removePlaceToMyTrip}>Remove From My Trip</button>
+          }
           <div className="columns">
             <div className="column">
               <figure className="image" id="show-image" style={{backgroundImage: `url(${image})`}} alt={name} />
