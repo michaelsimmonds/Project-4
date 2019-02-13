@@ -9,8 +9,6 @@ mongoose.Promise = Promise
 const Place = require('../models/place')
 const User = require('../models/user')
 
-let seedPlaces = []
-let seedUser = []
 mongoose.connect(config.dbURI, (err, db) => {
   db.dropDatabase()
     .then(()=> Place.create({
@@ -91,6 +89,118 @@ mongoose.connect(config.dbURI, (err, db) => {
       descriptShort: 'The Grand Canyon is a steep-sided canyon carved by the Colorado River in Arizona, United States. The Grand Canyon is 277 miles long, up to 18 miles wide and attains a depth of over a mile.',
       geog: [38.18, -112.36]
     },{
+      name: 'Mount Fuji',
+      country: 'Japan',
+      image: 'https://image.kkday.com/image/get/w_1080%2Cc_fit/s1.kkday.com/product_9558/20170809103130_G6CbP/jpg',
+      descriptLong: 'Japan’s Mt. Fuji is an active volcano about 100 kilometers southwest of Tokyo. Commonly called “Fuji-san,” it’s the country’s tallest peak, at 3,776 meters. A pilgrimage site for centuries, it’s considered one of Japan’s 3 sacred mountains, and summit hikes remain a popular activity. Its iconic profile is the subject of numerous works of art, notably Edo Period prints by Hokusai and Hiroshige. Early July to mid September is the official climbing season when the trails and mountain facilities are open. During this period the mountain is usually free of snow, the weather is relatively mild, access by public transportation is easy, and the mountain huts are operating.',
+      descriptShort: 'Of all Japan\'s iconic images, Mt Fuji (富士山; 3776m) is the real deal. Admiration for the mountain appears in Japan\'s earliest recorded literature, dating from the 8th century',
+      geog: [35.358, 138.731]
+    },{
+      name: 'Franz Josef Glacier',
+      country: 'New Zealand',
+      image: 'https://www.newzealand.com/assets/Tourism-NZ/West-Coast/ecc413ad1b/img-1536963834-337-22086-p-5751457B-ACA2-F77A-CDAA6DED0BBAF3AE-2544003__CropResizeWzY1MCw0ODgsODAsImpwZyJd.jpg',
+      descriptLong: 'From its origins high in the Southern Alps, the Franz Josef Glacier (Kā Roimata ō Hine Hukatere) descends into the lush native rainforest of Westland\'s National Park. This descent occurs from a height of 3,000m above sea level to 240m over a distance of 11km, making it one of the steepest glaciers in the country. It also moves faster than your average glacier at over 50cm per day, although speeds of up to four metres per day have been recorded in the main ice fall sections.This creates some truly incredible features in the glacier such as ice caves, tunnels, seracs and crevasses; all of which are constantly changing and evolving so no two days are ever the same.',
+      descriptShort: 'Franz Josef Glacier is a 12 km long temperate maritime glacier located in Westland Tai Poutini National Park on the West Coast of New Zealand\'s South Island',
+      geog: [-43.466, 170.191]
+    },{
+      name: 'Tegallalang Rice Terraces',
+      country: 'Bali',
+      image: 'https://www.thingstodoinbali.com/wp-content/uploads/rice-fields-bali_tegallalang-rice-terraces.jpg',
+      descriptLong: 'Tegalalang rice fields is a series of rice paddies located close to Ubud, in the centre of Bali, famous for its terraced layout. This is a traditional Balinese irrigation system known as subak. Positioned in a valley the Tegalalang rice terraces offer extremely scenic lookouts over the rice fields and surrounding green landscape. It’s a very popular tourist hotspot in Bali and a must-see in many Bali itineraries.',
+      descriptShort: 'Tegalalang Rice Terrace is one of the famous tourist objects in Bali situated in Tegalalang Village north of Ubud Bali featured by the amazing rice terrace set the cliff',
+      geog: [-43.466, 170.191]
+    },{
+      name: 'Danum Valley, Sabah',
+      country: 'Borneo',
+      image: 'https://i0.wp.com/borneoadventure.com/v3/wp-content/uploads/2012/06/sabah-danum-orangutan-01.jpg?w=2000&quality=60&strip=all&ssl=1',
+      descriptLong: 'It is estimated that there are 500 orangutan living in the Danum Valley Conservation Area. Danum’s 43,800 hectares of virgin rainforest are home to an astonishing variety of wildlife.  It offers some of the best wildlife watching and rainforest experiences in the world. You don’t just come here for the orangutans. You come here for everything. And walk away knowing that a massive tick has been added to your bucket list. There are a range of different treks at Danum. The trekking is relatively easy so you don’t need to be super fit. Plan on staying at least 3 nights if you want to see an orangutan.',
+      descriptShort: 'Danum Valley is the best place to see wild orangutan in pristine, undisturbed forest. Sightings are not ‘guaranteed’ but there is a pretty good chance of seeing orangutan in its natural habitat at Danum.',
+      geog: [-43.466, 170.191]
+    },{
+      name: 'The Whitsundays',
+      country: 'Australia',
+      image: 'https://www.allperfectstories.com/wp-content/uploads/2016/07/whitehaven-beach-day.jpg',
+      descriptLong: 'Resorts first opened here in the 1930s and now number eight, but the majority of islands are still undeveloped national parks, with campsites on seventeen of them. Resorts aside, the few islands left in private hands are mainly uninhabited and largely the domain of local yachties. Those covered here all have regular connections to the mainland. Don’t miss the chance to whale watch if you’re here between June and September, when humpbacks arrive from their Antarctic wintering grounds to give birth and raise their calves before heading south again.',
+      descriptShort: 'The 74 Whitsunday Islands lie between the northeast coast of Queensland, Australia, and the Great Barrier Reef, a massive stretch of coral teeming with marine life.',
+      geog: [-20.3, 148.933]
+    },{
+      name: 'Salar De Uyuni',
+      country: 'Bolivia',
+      image: 'https://www.flightnetwork.com.au/blog/wp-content/uploads/2012/03/Header_36-1.jpg',
+      descriptLong: 'Salar de Uyuni, amid the Andes in southwest Bolivia, is the world’s largest salt flat. It’s the legacy of a prehistoric lake that went dry, leaving behind a desertlike, nearly 11,000-sq.-km. landscape of bright-white salt, rock formations and cacti-studded islands. Its otherworldly expanse can be observed from central Incahuasi Island. Though wildlife is rare in this unique ecosystem, it harbors many pink flamingos.',
+      descriptShort: 'This is the largest salt lake in the world, capped by a thick, hard crust of salt, easily capable of supporting the weight of a car.',
+      geog: [-20.133, -67.489]
+    },{
+      name: 'Pyramids of Giza',
+      country: 'Egypt',
+      image: 'https://www.contiki.com/six-two/wp-content/uploads/2017/05/pyramids-2159286.jpg',
+      descriptLong: 'As of November 2008, sources cite either 118 or 138 as the number of identified Egyptian pyramids. Most were built as tombs for the country\'s pharaohs and their consorts during the Old and Middle Kingdom periods. The Pyramids at Giza were built at the very beginning of recorded human history, and for nearly five millennia they have stood on the edge of the desert plateau in magnificent communion with the sky. The overwhelming impression is due not only to the magnitude of their age and size but also to their elemental form, their simple but compelling triangular silhouettes. Seen at prime times – dawn, sunset and after dark – they form as much a part of the natural order as the sun, the moon and the stars.',
+      descriptShort: 'The Egyptian pyramids are ancient pyramid-shaped masonry structures located in Egypt.',
+      geog: [29.976, 31.131]
+    },{
+      name: 'Kyaiktiyo Pagoda',
+      country: 'Myanmar',
+      image: 'https://cdn.kimkim.com/files/a/content_articles/featured_photos/4fd02853722fe9ff1228890295e3b6738450071c/big-a8fac882c5077f54c77e7ba3451e9ae5.jpg',
+      descriptLong: 'Crowned with a slender gold stupa, the Rock is a huge granite boulder perched rakishly on a natural stone plinth that Burmese Buddhists believe has been held in place by a few extra-strong strands of Buddha’s hair.  Join the pilgrims’ dawn vigil amid clouds of incense and fervent prayers, or linger in the evening as the sunset throws the otherworldly scene into Technicolor and swifts swoop through the warm air.',
+      descriptShort: 'Every year, between November and March, barefoot pilgrims flock to Kyaiktiyo – the Golden Rock – high in the Eastern Yoma mountains of Myanmar.',
+      geog: [17.481, 97.098]
+    },{
+      name: 'Iguazu Falls',
+      country: 'Argentina',
+      image: 'https://cdn.tourradar.com/s3/tour/original/10800_4a49c9.jpg',
+      descriptLong: 'One of the planet’s most awe-inspiring sights, the Iguazú Falls are simply astounding. A visit is a jaw-dropping, visceral experience, and the power and noise of the cascades – a chain of hundreds of waterfalls nearly 3km in extension – live forever in the memory. An added benefit is the setting: the falls lie split between Brazil and Argentina in a large expanse of national park, much of it rainforest teeming with unique flora and fauna. The falls are easily reached from either side of the Argentine–Brazilian border, as well as from nearby Paraguay.',
+      descriptShort: 'Iguazú Falls or Iguaçu Falls are waterfalls of the Iguazu River on the border of the Argentine province of Misiones and the Brazilian state of Paraná. Together, they make up the largest waterfall system in the world.',
+      geog: [-25.686, -54.444]
+    },{
+      name: 'Termas Geometricas',
+      country: 'Chile',
+      image: 'https://media.timeout.com/images/105319467/750/562/image.jpg',
+      descriptLong: 'Drive for an hour on a bumpy dirt road in rural Chile for a great reward: 17 natural hot springs tucked into a narrow canyon of verdant rainforest. Japanese-inspired redwood walkways connect the steaming pools, which vary in size and temperature (there are multiple cool-down options: three plunge pools and two human-made waterfalls). The swirl of steam continuously alters your perspective as you gaze through the trees, and changing rooms have grass planted on the roofs. Be sure to visit the café pre- or post-soak, which is heated by an outdoor oven built into the wall and offers piping hot, locally grown coffee.',
+      descriptShort: 'This Japanese-inspired labyrinth of hot springs is hidden in a Chilean forest. Nestled in an almost unbelievably lush forest canyon in Chile, the hot spring spa known as Termas Geometricas is a stunning maze of red planks that wind through the trees.',
+      geog: [39.500, 71.874]
+    },{
+      name: 'Redwood National Park',
+      country: 'California, USA',
+      image: 'https://icdn7.themanual.com/image/themanual/sequioa-trees-1200x675.jpg',
+      descriptLong: 'Redwood National and State Parks are a string of protected forests, beaches and grasslands along Northern California’s coast. Jedediah Smith Redwoods State Park has trails through dense old-growth woods. Prairie Creek Redwoods State Park is home to Fern Canyon, with its high, plant-covered walls. Roosevelt elk frequent nearby Elk Prairie. Giant redwood clusters include Redwood National Park’s Lady Bird Johnson Grove.',
+      descriptShort: 'Look up to soaring redwoods while hiking or driving through this series of stunning National and State parks.',
+      geog: [41.3, -124]
+    },{
+      name: 'Gierangerfjord',
+      country: 'Norway',
+      image: 'https://disneycruiselineblog.com/wp-content/uploads/2015/02/DCL-Port-Adventures-Geiranger-Norway.jpg',
+      descriptLong: 'The iconic Geirangerfjord is considered one of the most beautiful fjords in the world, and is included on the UNESCO World Heritage list together with the Nærøyfjord. The Geirangerfjord is one of Norway’s most popular natural attractions. The fjord is 260 metres deep while the surrounding mountains are 1600-1700 metres high. The fjord is also known for its spectacular waterfalls and deserted fjord farms high up on the steep cliffsides. The idyllic nature and the dramatic mountains will impress any visitor in the area. The now deserted fjord farms tell the tales of a different time and way of life. You can visit some of the farms, such as Skageflå, Knivsflå, Blomberg, Matvik, Syltevik and Westerås. You can spend the night at Westerås, sample the local food served at the outdoor restaurant, whilst enjoying the spectacular view of the fjord below.',
+      descriptShort: 'The Geiranger Fjord is a fjord in the Sunnmøre region of Møre og Romsdal county, Norway',
+      geog: [62.121, 7.129]
+    },{
+      name: 'Northern Lights',
+      country: 'Iceland',
+      image: 'https://s3.eu-west-2.amazonaws.com/tourhound/pages//Northern_Lights.jpg',
+      descriptLong: 'Only in a handful of places in the world do you have so many opportunities to catch this incredible phenomenon. Norway, Finland, northern Canada (particularly Yellowknife) and Alaska (particularly Fairbanks) boast similar experiences, but while many of these places have longer hours of darkness in winter, they all face more challenges when it comes to cloud cover. Iceland, therefore, is an optimal destination to come to in order to tick seeing the Northern Lights off of your bucket list.The Northern Lights are the visual result of solar particles entering the earth’s magnetic field at high atmosphere, and ionising. Their intensity depends on the activity of the sun, and the acceleration speed of these particles. They appear as dancing lights high in the sky and vary in colour, usually being green, but occasionally also purple, red, pink, orange and blue. Their colours depend on the elements being ionised.',
+      descriptShort: 'Icelanders are privileged when it comes to the Northern Lights. They are visible for eight months a year, from early September to the end of April and in any of these months, you are likely to see some aurora activity—it just depends on your luck, the weather and solar activity.',
+      geog: [64.133, -21.933]
+    },{
+      name: 'Volcanoes National Park',
+      country: 'Rwanda',
+      image: 'http://www.adventure-travellers.com/imgs/aat-images/2-days-gorillas-rwanda.jpg',
+      descriptLong: 'Volcanoes National Park lies in northwestern Rwanda and borders Virunga National Park in the Democratic Republic of Congo and Mgahinga Gorilla National Park in Uganda. The national park is known as a haven for the rare and endangered mountain gorilla and golden monkeys. A close-up encounter is practically guaranteed, but be warned – it can get tough. Any exhaustion dissipates immediately, however, when you look into the liquid brown eyes of one of the magnificent bamboo-munching beasts – these are the archetypal “gentle giants”.',
+      descriptShort: 'A face-to-face encounter with a mountain gorilla in Rwanda’s Volcanoes National Park is one of the most exciting wildlife experiences Africa has to offer.',
+      geog: [-1.483, 29.533]
+    },{
+      name: 'Mount Kilimanjaro',
+      country: 'Tanzania',
+      image: 'https://www.rei.com/adventures/assets/adventures/images/trip/core/africa/kil_hero',
+      descriptLong: 'Kilimanjaro is also one of the world\'s highest volcanoes, and it\'s the highest free-standing mountain on earth, rising from cultivated farmland on the lower levels, through lush rainforest to alpine meadows, and finally across a lunar landscape to the twin summits of Kibo and Mawenzi. Kilimanjaro’s third volcanic cone, Shira, is on the mountain’s western side. The lower rainforest is home to many animals, including buffaloes, elephants, leopards and monkeys, and elands are occasionally seen in the saddle area between Kibo and Mawenzi.A hike up Kili lures around 25,000 trekkers each year, in part because it’s possible to walk to the summit without ropes or technical climbing experience. Non-technical, however, does not mean easy. The climb is a serious (and expensive) undertaking, and only worth doing with the right preparation.',
+      descriptShort: 'Mount Kilimanjaro or just Kilimanjaro, with its three volcanic cones, "Kibo", "Mawenzi", and "Shira", is a dormant volcano in Tanzania. It is the highest mountain in Africa, about 4,900 metres from its base, and 5,895 metres above sea level.',
+      geog: [-3.076, 37.353]
+    },{
+      name: 'Khao Sok National Park',
+      country: 'Thailand',
+      image: 'https://www.goway.com/media/cache/2a/7f/2a7fec8bb918dc2d1854044868e391c4.jpg',
+      descriptLong: 'If you\'ve had enough of beach-bumming, venture inland to the wondrous 738-sq-km Khao Sok National Park. Many believe this lowland jungle (Thailand\'s rainiest spot) dates back 160 million years, making it one of the world\'s oldest rainforests, and it\'s interspersed by hidden waterfalls and caves.It’s home to rare species such as the giant parasitic Rafflesia flower, hornbill birds, gibbons and tigers. The park can be explored by elephant-back safari, hiking trail, and raft, canoe or kayak via the Sok river.',
+      descriptShort: 'Khao Sok National Park is a nature reserve in southern Thailand containing dense virgin jungle, towerlike limestone karst formations and the man-made Cheow Lan Lake',
+      geog: [8.937, 98.530]
+    },{
       name: 'The Great Wall of China',
       country: 'China',
       image: 'https://images.immediate.co.uk/volatile/sites/7/2016/07/GettyImages-481614053-484c86d.jpg?quality=45&resize=620,413',
@@ -98,20 +208,21 @@ mongoose.connect(config.dbURI, (err, db) => {
       descriptShort: 'The Great Wall of China is a series of fortifications made of stone, brick, tamped earth, wood, and other materials, generally built along an east-to-west line across the historical northern borders of China',
       geog: [40.68, 117.23]
     }))
-    .then((places) => seedPlaces = places)
-    .then(() => {
+    .then((places) => {
+      console.log(places)
       return User.create({
         username: 'admin',
         email: 'admin',
         password: 'admin',
         passwordConfirmation: 'admin',
-        places: [seedPlaces[0], seedPlaces[1], seedPlaces[2]]
+        places: places.slice(0, 3),
+        admin: true
       })
     })
-    .then((user) => seedUser = user)
-    .then(() => console.log(seedPlaces))
-    .then(() => console.log(seedUser))
-    .then(() => console.log('Database successfully seeded'))
+    .then(user => {
+      console.log(user)
+      console.log('Database successfully seeded')
+    })
     .catch(err => console.log(err))
     .finally(() => mongoose.connection.close())
 })
