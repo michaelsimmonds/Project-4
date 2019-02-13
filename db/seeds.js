@@ -9,8 +9,6 @@ mongoose.Promise = Promise
 const Place = require('../models/place')
 const User = require('../models/user')
 
-let seedPlaces = []
-let seedUser = []
 mongoose.connect(config.dbURI, (err, db) => {
   db.dropDatabase()
     .then(()=> Place.create({
@@ -210,20 +208,21 @@ mongoose.connect(config.dbURI, (err, db) => {
       descriptShort: 'The Great Wall of China is a series of fortifications made of stone, brick, tamped earth, wood, and other materials, generally built along an east-to-west line across the historical northern borders of China',
       geog: [40.68, 117.23]
     }))
-    .then((places) => seedPlaces = places)
-    .then(() => {
+    .then((places) => {
+      console.log(places)
       return User.create({
         username: 'admin',
         email: 'admin',
         password: 'admin',
         passwordConfirmation: 'admin',
-        places: [seedPlaces[0], seedPlaces[1], seedPlaces[2]]
+        places: places.slice(0, 3),
+        admin: true
       })
     })
-    .then((user) => seedUser = user)
-    .then(() => console.log(seedPlaces))
-    .then(() => console.log(seedUser))
-    .then(() => console.log('Database successfully seeded'))
+    .then(user => {
+      console.log(user)
+      console.log('Database successfully seeded')
+    })
     .catch(err => console.log(err))
     .finally(() => mongoose.connection.close())
 })

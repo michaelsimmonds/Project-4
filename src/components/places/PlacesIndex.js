@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 import PlaceCard from './PlaceCard.js'
+import Auth from '../../lib/Auth'
 
 class PlacesIndex extends React.Component {
   constructor() {
@@ -13,9 +14,12 @@ class PlacesIndex extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/places')
+    //If user is logged in, only show the place he doesn't have already picked.
+    axios.get('/api/places', {
+      headers: Auth.isAuthenticated() ?
+        { Authorization: `Bearer ${Auth.getToken()}`} : null
+    })
       .then(res => this.setState({ places: res.data }))
-
   }
 
   render() {
