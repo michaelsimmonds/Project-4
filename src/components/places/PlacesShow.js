@@ -37,7 +37,7 @@ class PlacesShow extends React.Component {
 
   render() {
     if(!this.state.place) return null
-    const { name, country, image, descriptLong } = this.state.place
+    const { name, country, image, descriptLong, budget1, budget2, budget3 } = this.state.place
     return(
       <section className="section">
         <div className="container">
@@ -59,11 +59,13 @@ class PlacesShow extends React.Component {
 
 
               <h4 className="title is-4">Budget</h4>
-              <p>£20/day</p>
+              <p><span>Shoe-String:</span> £{budget1}/day</p>
+              <p><span>Mid-Range:</span> £{budget2}/day</p>
+              <p><span>Luxury:</span> £{budget3}/day</p>
 
 
-              <h4 className="title is-4">Best time to visit</h4>
-              <p>July to October</p>
+              <h4 className="title is-4">Weather</h4>
+
 
 
 

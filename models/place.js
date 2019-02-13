@@ -6,7 +6,10 @@ const placeSchema = new mongoose.Schema({
   image: { type: String, required: 'Image url required' },
   descriptLong: { type: String, required: 'Long description required' },
   descriptShort: { type: String, required: 'Short description required'},
-  geog: { type: Array, required: 'Lat/lng required, in array form: [lat, lng]' }
+  geog: { type: Array, required: 'Lat/lng required, in array form: [lat, lng]' },
+  budget1: { type: String },
+  budget2: { type: String },
+  budget3: { type: String }
 })
 
 module.exports = mongoose.model('Place', placeSchema)

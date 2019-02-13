@@ -17,7 +17,10 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://www.sungatetours.com/wp-content/uploads/2014/03/Panoramic-View-of-Machu-Pichu-Citadel.jpg',
       descriptLong: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley. Most archaeologists believe that Machu Picchu was built as an estate for the Inca emperor Pachacuti (1438–1472). Often mistakenly referred to as the “Lost City of the Incas” (a title more accurately applied to Vilcabamba), it is the most familiar icon of Inca civilization. The Incas built the estate around 1450 but abandoned it a century later at the time of the Spanish Conquest. Although known locally, it was not known to the Spanish during the colonial period and remained unknown to the outside world until American historian Hiram Bingham brought it to international attention in 1911.',
       descriptShort: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley',
-      geog: [-13.1631, -72.5450]
+      geog: [-13.1631, -72.5450],
+      budget1: '12',
+      budget2: '33',
+      budget3: '105'
     },{
       name: 'Niagra Falls',
       country: 'Canada/USA',
@@ -157,7 +160,7 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://media.timeout.com/images/105319467/750/562/image.jpg',
       descriptLong: 'Drive for an hour on a bumpy dirt road in rural Chile for a great reward: 17 natural hot springs tucked into a narrow canyon of verdant rainforest. Japanese-inspired redwood walkways connect the steaming pools, which vary in size and temperature (there are multiple cool-down options: three plunge pools and two human-made waterfalls). The swirl of steam continuously alters your perspective as you gaze through the trees, and changing rooms have grass planted on the roofs. Be sure to visit the café pre- or post-soak, which is heated by an outdoor oven built into the wall and offers piping hot, locally grown coffee.',
       descriptShort: 'This Japanese-inspired labyrinth of hot springs is hidden in a Chilean forest. Nestled in an almost unbelievably lush forest canyon in Chile, the hot spring spa known as Termas Geometricas is a stunning maze of red planks that wind through the trees.',
-      geog: [39.500, 71.874]
+      geog: [-39.500, -71.874]
     },{
       name: 'Redwood National Park',
       country: 'California, USA',

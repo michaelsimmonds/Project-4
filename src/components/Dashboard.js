@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
 import Auth from '../lib/Auth'
 import UserTrips from './USerTrips'
+import { Link } from 'react-router-dom'
 
 class Dashboard extends React.Component{
 
@@ -205,6 +206,9 @@ class Dashboard extends React.Component{
       <section id="dash-section">
         <h2 className="dash-title">My Trip</h2>
         <div id='map' ref={element => this.mapDOMElement = element}/>
+        <Link className="dash-title" to="/places">
+          <h2>Add a new destination</h2>
+        </Link>
         {this.state.user && <UserTrips places={this.state.user.places}/>}
       </section>
     )
