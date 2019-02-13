@@ -4,6 +4,8 @@ import axios from 'axios'
 import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
 
+import moment from 'moment'
+
 class PlacesShow extends React.Component {
 
   constructor() {
@@ -15,7 +17,6 @@ class PlacesShow extends React.Component {
   }
 
   addPlaceToMyTrip(){
-
     const user = Auth.getPayload()
     console.log(user, this.props.match.params.id)
     axios
@@ -31,7 +32,8 @@ class PlacesShow extends React.Component {
   componentDidMount() {
     axios.get(`/api/places/${this.props.match.params.id}`)
       .then(res => this.setState({ place: res.data }))
-
+    axios.get(`/api/places/${this.props.match.params.id}/weather`)
+      .then(res => this.setState({ weather: res.data }))
   }
 
 
@@ -64,6 +66,19 @@ class PlacesShow extends React.Component {
 
               <h4 className="title is-4">Best time to visit</h4>
               <p>July to October</p>
+
+
+
+              <div>
+                {this.state.weather.data.map(day =>
+                  <div key={day.time}>
+                    <h4>{moment.unix(day.time).formate('dddd')}</h4>
+                  </div>
+                )}
+
+
+
+              </div>
 
 
 

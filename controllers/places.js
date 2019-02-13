@@ -1,4 +1,5 @@
 const Place = require('../models/place')
+const rp = require('request-promise')
 
 function indexRoute( req, res ){
   Place
@@ -28,9 +29,21 @@ function showRoute(req, res) {
     .then(places =>res.status(200).json(places))
 }
 
+function getWeatherRoute(req, res) {
+  Place
+    .findById(req.params.id)
+    .then(places => {
+      rp.get(`https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/${places.geog[0]},${places.geog[1]}`, {
+        json: true
+      })
+        .then(data => res.json(data))
+    })
+}
+
 
 module.exports = {
   index: indexRoute,
   create: createRoute,
-  show: showRoute
+  show: showRoute,
+  getWeather: getWeatherRoute
 }
