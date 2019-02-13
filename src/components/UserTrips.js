@@ -5,7 +5,7 @@ const UserTrips = ({places}) => {
   console.log(places)
   return(
     <section className="section">
-      <div className="container">
+      <div className="container dash-container">
         <div className="columns is-multiline">
           {places.map(place =>
             <div className="column is-one-quarter" key={place._id}>

@@ -202,7 +202,7 @@ class Dashboard extends React.Component{
 
   render(){
     return(
-      <section>
+      <section id="dash-section">
         <h2 className="dash-title">My Trip</h2>
         <div id='map' ref={element => this.mapDOMElement = element}/>
         {this.state.user && <UserTrips places={this.state.user.places}/>}

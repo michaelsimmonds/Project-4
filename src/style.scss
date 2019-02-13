@@ -75,6 +75,10 @@ button.button {
   float: right;
 }
 
+figure.image {
+  border-radius: 5px;
+}
+
 .image {
   height: 100%;
   width: 100%;
@@ -139,6 +143,7 @@ div.place-title {
   color: $font-colour;
   font-size: 35px;
   font-weight: bolder;
+  border-radius: 5px;
   // background-color: rgba(0,0,0,.2);
 }
 
@@ -192,9 +197,14 @@ h4.title.is-4 {
   padding-top: 15px;
   margin: none;
 }
+
+#dash-section {
+
+}
 #map {
   margin: auto;
   height: 600px;
   width: 1020px;
   margin-top: 15px;
+  border-radius: 5px;
 }
