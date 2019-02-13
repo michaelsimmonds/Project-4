@@ -1,11 +1,17 @@
 const Place = require('../models/place')
 
 function indexRoute( req, res ){
-  const { fields, ...rest } = req.query
-  const select = fields ? fields.split(',') : []
   Place
-    .find(rest)
-    .select(select)
+    .find()
+    .then(places => {
+      return places.filter(place => {
+        let toBeKept = true
+        if(req.currentUser) req.currentUser.places.forEach(el => {
+          if(el.equals(place._id)) toBeKept = false
+        })
+        return toBeKept
+      })
+    })
     .then(places => res.status(200).json(places))
 }
 
