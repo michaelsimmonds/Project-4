@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios'
+import moment from 'moment'
+import 'weather-icons/css/weather-icons.css'
 
 import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
-
-import moment from 'moment'
 
 class PlacesShow extends React.Component {
 
@@ -13,7 +13,7 @@ class PlacesShow extends React.Component {
 
     this.state = {}
     this.addPlaceToMyTrip = this.addPlaceToMyTrip.bind(this)
-
+    this.getIconClass = this.getIconClass.bind(this)
   }
 
   addPlaceToMyTrip(){
@@ -36,9 +36,20 @@ class PlacesShow extends React.Component {
       .then(res => this.setState({ weather: res.data }))
   }
 
+  getIconClass(icon) {
+    const className = icon.replace('partly-', '')
+      .split('-')
+      .reverse()
+      .join('-')
+
+    return `wi wi-${className} is-size-1`
+  }
+
 
   render() {
     if(!this.state.place) return null
+    if(!this.state.weather) return null
+    console.log(this.state.weather)
     const { name, country, image, descriptLong } = this.state.place
     return(
       <section className="section">
@@ -68,31 +79,30 @@ class PlacesShow extends React.Component {
               <p>July to October</p>
 
 
-
-              <div>
-                {this.state.weather.data.map(day =>
-                  <div key={day.time}>
-                    <h4>{moment.unix(day.time).formate('dddd')}</h4>
-                  </div>
-                )}
-
-
-
-              </div>
-
-
-
             </div>
+            <div>
+              {this.state.weather.daily.data.map(day =>
+                <div key={day.time}>
+                  <h4>{moment.unix(day.time).format('dddd')}</h4>
+                  <p>
+                    <i className={this.getIconClass(day.icon)}></i>
+                  </p>
+                  <p>{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
+                </div>
+              )}
+            </div>
+
+
+
           </div>
         </div>
+
         <div className="container" id="show-description">
           <h4 className="title is-4">Description</h4>
           <p>{descriptLong}</p>
         </div>
 
-        <div className="container">
-          <div className="map">MAP GOES HERE</div>
-        </div>
+
       </section>
 
     )
