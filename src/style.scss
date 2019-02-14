@@ -174,13 +174,13 @@ div.place-title {
 
 h2.title.is-1 {
   text-align: center;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.2em;
 }
 
 h4.title.is-4 {
   font-size: 20px;
   margin: auto;
-  padding: 5px 0 5px 0;
+  padding: 8px 0 5px 0;
 }
 
 #show-image {
@@ -199,6 +199,11 @@ h4.title.is-4 {
   margin: none;
 }
 
+.descriptLong {
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+}
 
 #map {
   margin: auto;
@@ -212,4 +217,16 @@ h4.title.is-4 {
       position: relative;
       height: 50px;
     }
+
+h5 {
+  margin-bottom: 15px;
+}
+
+div .level {
+  padding-top: 10px;
+}
+
+.temp {
+  margin-top: 5px;
+>>>>>>> development
 }

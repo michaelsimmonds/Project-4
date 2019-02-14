@@ -28,5 +28,8 @@ router.route('/users/:id')
   .get(usersController.show)
   .put(secureRoute, usersController.update)
 
+router.route('/places/:id/weather')
+  .get(placesController.getWeather)
+
 
 module.exports = router
