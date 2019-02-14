@@ -14,7 +14,7 @@ class Home extends React.Component{
     const rndm = Math.random()
     const num = Math.floor(rndm*6)
     this.setState({bg: num})
-    setTimeout(this.updateBg, 1000*10)
+    setTimeout(this.updateBg, 1000*5)
   }
 
   componentDidMount(){
