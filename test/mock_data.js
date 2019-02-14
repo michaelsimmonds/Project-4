@@ -14,15 +14,6 @@ const mockPlaceData = [{
   geog: [43.0799, -79.0747]
 }]
 
-const mockUserData = {
-  username: 'test',
-  email: 'test@test.com',
-  password: 'test',
-  passwordConfirmation: 'test',
-  places: ['test', 'test'],
-  location: ['test', 'test']
-}
-
 module.exports = {
   mockPlaceData,
   mockUserData

@@ -220,9 +220,10 @@ class Dashboard extends Component{
   }
 
   componentDidMount(){
-    const user = Auth.getPayload()
-    axios(`/api/users/${user.sub}`)
+
+    axios(`/api/users/${Auth.getPayload().sub}`)
       .then(({ data }) => this.setState({ user: data }))
+
   }
 
   componentDidUpdate(){
@@ -260,7 +261,10 @@ class Dashboard extends Component{
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <PlaceCard {...item} userHasTrip="true" frontOnly="true"/>
+                            <PlaceCard {...item}
+                              userHasTrip="true"
+                              frontOnly="true"
+                            />
                           </div>
                         )}
                       </Draggable>
