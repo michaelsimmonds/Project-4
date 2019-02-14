@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import moment from 'moment'
+import 'weather-icons/css/weather-icons.css'
 
 import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
@@ -35,10 +37,11 @@ class PlacesShow extends React.Component {
       .then(() => this.getPlaceDetails())
       .catch(err => alert(err.message))
 
+    this.getIconClass = this.getIconClass.bind(this)
+
   }
 
   addPlaceToMyTrip(){
-
     const user = Auth.getPayload()
     console.log(user, this.props.match.params.id)
     axios
@@ -59,6 +62,17 @@ class PlacesShow extends React.Component {
     console.log(this.props.match.params.id)
     axios.get(`/api/places/${this.props.match.params.id}`)
       .then(res => this.setState({ place: res.data }))
+    axios.get(`/api/places/${this.props.match.params.id}/weather`)
+      .then(res => this.setState({ weather: res.data }))
+  }
+
+  getIconClass(icon) {
+    const className = icon.replace('partly-', '')
+      .split('-')
+      .reverse()
+      .join('-')
+
+    return `wi wi-${className} is-size-1`
   }
 
 
@@ -66,6 +80,7 @@ class PlacesShow extends React.Component {
     console.log(this.state.place.comments)
     if(!this.state.place) return null
     const { name, country, image, descriptLong, budget1, budget2, budget3 } = this.state.place
+    if(!this.state.weather) return null
     return(
       <section className="section">
         <div className="container">
@@ -85,7 +100,6 @@ class PlacesShow extends React.Component {
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
 
-
               <h4 className="title is-4">Budget</h4>
               <p><span>Shoe-String:</span> £{budget1}/day</p>
               <p><span>Mid-Range:</span> £{budget2}/day</p>
@@ -94,15 +108,20 @@ class PlacesShow extends React.Component {
 
               <h4 className="title is-4">Weather</h4>
 
-
+              <h4 className="title is-4">Best time to visit</h4>
+              <p>July to October</p>
 
             </div>
           </div>
         </div>
+
         <div className="container" id="show-description">
-          <h4 className="title is-4">Description</h4>
-          <p>{descriptLong}</p>
+          <div className="level">
+            <h4 className="title is-4">Description</h4>
+          </div>
+          <p className="descriptLong">{descriptLong}</p>
         </div>
+
 
         {this.state.place.comments && this.state.place.comments.map(comment =>
           <div key={comment._id}>
@@ -127,6 +146,21 @@ class PlacesShow extends React.Component {
               <button className="button">Add Comment</button>
             </form>
           </div>
+        </div>
+
+        <div className="level">
+          <h4 className="title is-4">Weather at Location</h4>
+        </div>
+        <div className="container level">
+          {this.state.weather.daily.data.map(day =>
+            <div key={day.time} >
+              <h5>{moment.unix(day.time).format('dddd')}</h5>
+              <p>
+                <i className={this.getIconClass(day.icon)}></i>
+              </p>
+              <p className="temp">{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
+            </div>
+          )}
         </div>
 
       </section>

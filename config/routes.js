@@ -31,4 +31,8 @@ router.route('/users/:id')
 router.route('/places/:id/comments')
   .post(secureRoute, placesController.commentCreate)
 
+router.route('/places/:id/weather')
+  .get(placesController.getWeather)
+
+
 module.exports = router

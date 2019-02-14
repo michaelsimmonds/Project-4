@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import 'bulma'
+import 'weather-icons/css/weather-icons.css'
 import './style.scss'
 
 import NavBar from './components/common/NavBar'
