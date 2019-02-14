@@ -5,8 +5,9 @@ $font-colour: #F5F7FB;
 }
 
 body {
-  // background-color: #EBF0F8;
+  background-color: #EBF0F8;
   min-height: 100vh;
+  min-width: 100vw;
 }
 
 nav.navbar {
@@ -15,9 +16,10 @@ nav.navbar {
 .navbar {
   // background-color: none;
   .navbar-item{
-  color: black;
+  color: $font-colour;
   font-weight: bold;
-  font-size: 21px;
+  font-size: 25px;
+  text-shadow: 1px 1px 5px #000000;
   }
 }
 
@@ -25,6 +27,10 @@ nav.navbar {
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
   transition: background-image 10s;
 }
 .bg-0{
