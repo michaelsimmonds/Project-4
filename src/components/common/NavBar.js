@@ -32,7 +32,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar">
+      <nav className="navbar is-transparent">
         <div className="container">
           <div className="navbar-brand">
 

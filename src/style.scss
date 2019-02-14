@@ -5,16 +5,29 @@ $font-colour: #F5F7FB;
 }
 
 body {
-  background-color: #EBF0F8;
+  background-color: #CADCE7;
   min-height: 100vh;
+  min-width: 100vw;
 }
 
+nav.navbar {
+  background-color: transparent;
+}
 .navbar {
-  background: #94B0DA;
+  // background-color: none;
   .navbar-item{
   color: $font-colour;
   font-weight: bold;
-  font-size: 21px;
+  font-size: 25px;
+  text-shadow: 1px 1px 5px #000000;
+  transition: color 1s ease;
+
+  &:hover {
+    color: black;
+    text-shadow: none;
+    text-shadow: 2px 2px 5px $font-colour;
+    font-weight: bolder;
+  }
   }
 }
 
@@ -22,28 +35,32 @@ body {
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  transition: background-image 1s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  transition: background-image 10s;
 }
 .bg-0{
-  background-image: url('https://d3hne3c382ip58.cloudfront.net/files/uploads/bookmundi/resized/cmsfeatured/uluru-rock-1511763600-1000X561.jpg');
+  background-image: url('/assets/Australia_Uluru.jpg');
 }
 .bg-1{
-  background-image: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/08/02/12/great-wall-of-china.jpg');
+  background-image: url('/assets/D1024_57_242_1200.jpg');
 }
 .bg-2{
-  background-image: url('http://www.leisureopportunities.co.uk/images/HIGH11765_313622.jpg');
+  background-image: url('/assets/australia.jpg');
 }
 .bg-3{
-  background-image: url('https://www.smartertravel.com/uploads/2017/08/Grand-Canyon-%E2%80%93-hero-1400x500.jpg');
+  background-image: url('/assets/japan.jpg');
 }
 .bg-4{
-  background-image: url('https://a1.r9cdn.net/rimg/dimg/6d/56/5bd0abd4-city-26896-1670df92320.jpg?crop=true&width=1000&height=600&xhint=1567&yhint=925');
+  background-image: url('/assets/northern.jpg');
 }
 .bg-5{
-  background-image: url('https://cdn4.i-scmp.com/sites/default/files/styles/2000x792/public/images/methode/2018/05/02/0cb3e7a0-42c2-11e8-ab09-36e8e67fb996_4000x1584_134359.jpg?itok=fNVAT4fh');
+  background-image: url('/assets/petra.jpg');
 }
 .bg-6{
-  background-image: url('https://www.fodors.com/wp-content/uploads/2018/09/HERo_MachuPicchu101_Hero_4_MachuPicchu101_WhereCanIGetBestPhoto_dreamstime_xxl_110067560_2_1.jpg');
+  background-image: url('/assets/pyramids.jpg');
 }
 
 h1.title.is-1 {
@@ -168,8 +185,6 @@ div.place-title {
   padding-top: 25px;
 }
 
-
-
 //SHOW PAGE
 
 h2.title.is-1 {
@@ -184,11 +199,17 @@ h4.title.is-4 {
 }
 
 #show-image {
-  height: 200%;
+  height: 400px;
+  width: 400px;
+  margin-left: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 5px;
+  border-radius: 5px;
 }
 
 #show-description {
-  margin-top: 175px;
+  margin-top: 50px;
 }
 
 //DASHBOARD
@@ -199,11 +220,7 @@ h4.title.is-4 {
   margin: none;
 }
 
-.descriptLong {
-  text-align: justify;
-  -moz-text-align-last: center;
-  text-align-last: center;
-}
+
 
 #map {
   margin: auto;
@@ -229,6 +246,7 @@ div .level {
 .temp {
   margin-top: 5px;
 }
+
 .add-trip{
   margin-top: 10px;
   border-radius: 5px;
@@ -239,4 +257,52 @@ div .level {
   padding-top: 8px;
   color: grey;
   padding-top: 10px;
+}
+
+//LOADING
+@keyframes rotate {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(-90deg);}
+  50% {transform: rotate(-180deg);}
+  75% {transform: rotate(-270deg);}
+  100% {transform: rotate(-360deg);}
+}
+
+div#loading {
+  width: 250px;
+  height: 250px;
+  margin: 20vh auto;
+  background-image: url('http://pngimg.com/uploads/globe/globe_PNG52.png');
+  animation: rotate 5s linear infinite;
+}
+
+.descriptLong {
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+}
+
+.custom-marker {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  transition-property: height, width;
+  transition-duration: .5s, .5s;
+  cursor: pointer;
+}
+
+.custom-marker:hover {
+  height: 10em;
+  width: 10em;
+}
+
+.custom-marker img {
+  justify-content: center;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
 }
