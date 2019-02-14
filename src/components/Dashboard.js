@@ -232,7 +232,7 @@ class Dashboard extends Component{
   }
 
   render(){
-    if(!this.state.map && !this.state.mapDOMElement) return <Loading />
+    if(!this.state.markersCoord) return <Loading />
     return(
       <section className="section">
         <div className="container dash-container">

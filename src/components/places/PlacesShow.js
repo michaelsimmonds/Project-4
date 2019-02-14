@@ -51,7 +51,7 @@ class PlacesShow extends React.Component {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(() => {
-        Flash.setMessage('success', 'New trip added to you dashboard')
+        Flash.setMessage('success', 'New trip added to your map')
         this.props.history.push('/dashboard')
       })
   }
