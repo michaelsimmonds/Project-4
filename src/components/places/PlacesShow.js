@@ -98,26 +98,31 @@ class PlacesShow extends React.Component {
       <section className="section">
         <div className="container">
           <h2 className="title is-1">{name}</h2>
-          {Auth.isAuthenticated() &&
-            !this.props.location.pathname.includes('user') &&
-              <button
-                className="button"
-                id="add"
-                onClick={this.addPlaceToMyTrip}>Add to My Trip</button>
-          }
-          {Auth.isAuthenticated() &&
-            this.props.location.pathname.includes('user') &&
-              <button
-                className="button"
-                id="remove"
-                onClick={this.removePlaceToMyTrip}>Remove From My Trip</button>
-          }
+
+
           <div className="columns">
-            <div className="column">
-              <figure className="image" id="show-image" style={{backgroundImage: `url(${image})`}} alt={name} />
+
+            <div className="column is-two-fifths">
+              <div id="show-image" style={{backgroundImage: `url(${image})`}} alt={name} />
             </div>
 
-            <div className="column">
+            <div className="column is-three-fifths">
+
+              {Auth.isAuthenticated() &&
+                !this.props.location.pathname.includes('user') &&
+                  <button
+                    className="button"
+                    id="add"
+                    onClick={this.addPlaceToMyTrip}>Add to My Trip</button>
+              }
+              {Auth.isAuthenticated() &&
+                this.props.location.pathname.includes('user') &&
+                  <button
+                    className="button"
+                    id="remove"
+                    onClick={this.removePlaceToMyTrip}>Remove From My Trip</button>
+              }
+
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
 
@@ -127,49 +132,15 @@ class PlacesShow extends React.Component {
               <p><span>Luxury:</span> £{budget3}/day</p>
 
 
-              <h4 className="title is-4">Weather</h4>
-
               <h4 className="title is-4">Best time to visit</h4>
               <p>July to October</p>
+
 
             </div>
           </div>
         </div>
 
-        <div className="container" id="show-description">
-          <div className="level">
-            <h4 className="title is-4">Description</h4>
-          </div>
-          <p className="descriptLong">{descriptLong}</p>
-        </div>
-
-
-        {this.state.place.comments && this.state.place.comments.map(comment =>
-          <div key={comment._id}>
-            <PlacesComment comment={comment}/>
-          </div>
-        )}
-
-
         <div className="container">
-          <div className="comments">
-            <form onSubmit={this.handleSubmit}>
-              <div className="field">
-                <label className="label">Comments</label>
-                <input
-                  className="textarea"
-                  name="commentText"
-                  placeholder="Add a comment..."
-                  value={this.state.text}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <button className="button">Add Comment</button>
-            </form>
-          </div>
-        </div>
-
-        <div className="level">
           <h4 className="title is-4">Weather at Location</h4>
         </div>
         <div className="container level">
@@ -183,6 +154,44 @@ class PlacesShow extends React.Component {
             </div>
           )}
         </div>
+
+        <div className="container" id="show-description">
+          <div>
+            <h4 className="title is-4">Description</h4>
+            <p className="descriptLong">{descriptLong}</p>
+          </div>
+        </div>
+
+
+        <div className="container">
+          <h4 className="title is-4">Comments</h4>
+          {this.state.place.comments && this.state.place.comments.map(comment =>
+            <div key={comment._id}>
+              <PlacesComment comment={comment}/>
+            </div>
+          )}
+        </div>
+
+
+        <div className="container">
+          <div className="comments">
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <label className="label">Add a comment</label>
+                <input
+                  className="textarea"
+                  name="commentText"
+                  placeholder="Let us know your thoughts..."
+                  value={this.state.text}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button className="button">Submit</button>
+            </form>
+          </div>
+        </div>
+
+
 
       </section>
 

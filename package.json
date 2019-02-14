@@ -21,6 +21,8 @@
     "dotenv-webpack": "^1.7.0",
     "express": "^4.16.4",
     "file-loader": "^3.0.1",
+    "filestack-js": "^1.14.1",
+    "filestack-react": "^2.0.0",
     "jsonwebtoken": "^8.4.0",
     "mapbox-gl": "^0.53.0",
     "moment": "^2.24.0",
