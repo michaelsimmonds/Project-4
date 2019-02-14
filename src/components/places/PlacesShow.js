@@ -93,11 +93,11 @@ class PlacesShow extends React.Component {
 
             <div className="column is-three-fifths">
 
-            {Auth.isAuthenticated() &&
+              {Auth.isAuthenticated() &&
               <button
                 className="button button-add-remove"
                 onClick={this.updatePlaceToMyTrip}>{userHasPlace ? 'Remove From' : 'Add To'} My Trip</button>
-            }
+              }
 
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
@@ -112,20 +112,7 @@ class PlacesShow extends React.Component {
           </div>
         </div>
 
-        <div className="container">
-          <h4 className="title is-4">Weather at Location</h4>
-        </div>
-        <div className="container level">
-          {this.state.weather.daily.data.map(day =>
-            <div key={day.time} >
-              <h5>{moment.unix(day.time).format('dddd')}</h5>
-              <p>
-                <i className={this.getIconClass(day.icon)}></i>
-              </p>
-              <p className="temp">{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
-            </div>
-          )}
-        </div>
+        
 
         <div className="container" id="show-description">
           <div>
