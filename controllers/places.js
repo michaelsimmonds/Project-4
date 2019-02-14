@@ -28,9 +28,21 @@ function showRoute(req, res) {
     .then(places =>res.status(200).json(places))
 }
 
+function commentCreateRoute(req, res) {
+  req.body.user = req.currentUser
+
+  Place
+    .findById(req.params.id)
+    .then(place => {
+      place.comments.push(req.body)
+      return place.save()
+    })
+    .then(place => res.status(201).json(place))
+}
 
 module.exports = {
   index: indexRoute,
   create: createRoute,
-  show: showRoute
+  show: showRoute,
+  commentCreate: commentCreateRoute
 }

@@ -111,14 +111,14 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://www.thingstodoinbali.com/wp-content/uploads/rice-fields-bali_tegallalang-rice-terraces.jpg',
       descriptLong: 'Tegalalang rice fields is a series of rice paddies located close to Ubud, in the centre of Bali, famous for its terraced layout. This is a traditional Balinese irrigation system known as subak. Positioned in a valley the Tegalalang rice terraces offer extremely scenic lookouts over the rice fields and surrounding green landscape. It’s a very popular tourist hotspot in Bali and a must-see in many Bali itineraries.',
       descriptShort: 'Tegalalang Rice Terrace is one of the famous tourist objects in Bali situated in Tegalalang Village north of Ubud Bali featured by the amazing rice terrace set the cliff',
-      geog: [-43.466, 170.191]
+      geog: [-8.335, 115.088]
     },{
       name: 'Danum Valley, Sabah',
       country: 'Borneo',
       image: 'https://i0.wp.com/borneoadventure.com/v3/wp-content/uploads/2012/06/sabah-danum-orangutan-01.jpg?w=2000&quality=60&strip=all&ssl=1',
       descriptLong: 'It is estimated that there are 500 orangutan living in the Danum Valley Conservation Area. Danum’s 43,800 hectares of virgin rainforest are home to an astonishing variety of wildlife.  It offers some of the best wildlife watching and rainforest experiences in the world. You don’t just come here for the orangutans. You come here for everything. And walk away knowing that a massive tick has been added to your bucket list. There are a range of different treks at Danum. The trekking is relatively easy so you don’t need to be super fit. Plan on staying at least 3 nights if you want to see an orangutan.',
       descriptShort: 'Danum Valley is the best place to see wild orangutan in pristine, undisturbed forest. Sightings are not ‘guaranteed’ but there is a pretty good chance of seeing orangutan in its natural habitat at Danum.',
-      geog: [-43.466, 170.191]
+      geog: [-4.916, 117.666]
     },{
       name: 'The Whitsundays',
       country: 'Australia',

@@ -28,5 +28,7 @@ router.route('/users/:id')
   .get(usersController.show)
   .put(secureRoute, usersController.update)
 
+router.route('/places/:id/comments')
+  .post(secureRoute, placesController.commentCreate)
 
 module.exports = router

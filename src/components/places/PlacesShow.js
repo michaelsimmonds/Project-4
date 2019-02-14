@@ -4,13 +4,36 @@ import axios from 'axios'
 import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
 
+import PlacesComment from './PlacesComment'
+
 class PlacesShow extends React.Component {
 
   constructor() {
     super()
 
-    this.state = {}
+    this.state = {
+      commentText: '',
+      place: {
+        comments: ''
+      }
+    }
     this.addPlaceToMyTrip = this.addPlaceToMyTrip.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+
+  }
+
+  handleChange({ target: {value}}) {
+    this.setState({commentText: value})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    axios
+      .post(`/api/places/${this.props.match.params.id}/comments`, {text: this.state.commentText},
+        { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
+      .then(() => this.getPlaceDetails())
+      .catch(err => alert(err.message))
 
   }
 
@@ -29,13 +52,18 @@ class PlacesShow extends React.Component {
   }
 
   componentDidMount() {
+    this.getPlaceDetails()
+  }
+
+  getPlaceDetails(){
+    console.log(this.props.match.params.id)
     axios.get(`/api/places/${this.props.match.params.id}`)
       .then(res => this.setState({ place: res.data }))
-
   }
 
 
   render() {
+    console.log(this.state.place.comments)
     if(!this.state.place) return null
     const { name, country, image, descriptLong, budget1, budget2, budget3 } = this.state.place
     return(
@@ -68,7 +96,6 @@ class PlacesShow extends React.Component {
 
 
 
-
             </div>
           </div>
         </div>
@@ -77,9 +104,31 @@ class PlacesShow extends React.Component {
           <p>{descriptLong}</p>
         </div>
 
+        {this.state.place.comments && this.state.place.comments.map(comment =>
+          <div key={comment._id}>
+            <PlacesComment comment={comment}/>
+          </div>
+        )}
+
+
         <div className="container">
-          <div className="map">MAP GOES HERE</div>
+          <div className="comments">
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <label className="label">Comments</label>
+                <input
+                  className="textarea"
+                  name="commentText"
+                  placeholder="Add a comment..."
+                  value={this.state.text}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button className="button">Add Comment</button>
+            </form>
+          </div>
         </div>
+
       </section>
 
     )
