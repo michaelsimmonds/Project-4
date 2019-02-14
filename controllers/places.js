@@ -4,15 +4,13 @@ const rp = require('request-promise')
 function indexRoute( req, res ){
   Place
     .find()
-    .then(places => {
-      return places.filter(place => {
-        let toBeKept = true
-        if(req.currentUser) req.currentUser.places.forEach(el => {
-          if(el.equals(place._id)) toBeKept = false
-        })
-        return toBeKept
-      })
+    .then(places => places.filter(place => {
+      if(req.currentUser) {
+        //return false if user already added place to his trip
+        return !req.currentUser.places.some(userPlace => userPlace.equals(place._id))
+      } else return true
     })
+    )
     .then(places => res.status(200).json(places))
 }
 
@@ -44,15 +42,14 @@ function commentCreateRoute(req, res) {
 function getWeatherRoute(req, res) {
   Place
     .findById(req.params.id)
-    .then(places => {
-      rp.get(`https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/${places.geog[0]},${places.geog[1]}`, {
+    .then(place => {
+      rp.get(`https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/${place.geog[0]},${place.geog[1]}`, {
         json: true,
         qs: { units: 'si'}
       })
         .then(data => res.json(data))
     })
 }
-
 
 module.exports = {
   index: indexRoute,

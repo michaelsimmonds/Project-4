@@ -17,52 +17,34 @@ class PlacesShow extends React.Component {
       commentText: '',
       place: {
         comments: ''
-      }
+      },
+      weather: ''
     }
-    this.addPlaceToMyTrip = this.addPlaceToMyTrip.bind(this)
-    this.removePlaceToMyTrip = this.removePlaceToMyTrip.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-
+    this.updatePlaceToMyTrip = this.updatePlaceToMyTrip.bind(this)
+    this.handleCommentChange = this.handleCommentChange.bind(this)
+    this.handleCommentSubmit = this.handleCommentSubmit.bind(this)
   }
 
-  handleChange({ target: {value}}) {
+  handleCommentChange({ target: {value}}) {
     this.setState({commentText: value})
   }
 
-  handleSubmit(e) {
+  handleCommentSubmit(e) {
     e.preventDefault()
     axios
       .post(`/api/places/${this.props.match.params.id}/comments`, {text: this.state.commentText},
         { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
       .then(() => this.getPlaceDetails())
-      .catch(err => alert(err.message))
-
-    this.getIconClass = this.getIconClass.bind(this)
-
   }
 
-  addPlaceToMyTrip(){
+  updatePlaceToMyTrip(){
     const user = Auth.getPayload()
-    console.log(user, this.props.match.params.id)
     axios
-      .put(`/api/users/${user.sub}`, {place: this.props.match.params.id, action: 'add'}, {
+      .put(`/api/users/${user.sub}`, {place: this.props.match.params.id}, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
       })
       .then(() => {
         Flash.setMessage('success', 'New trip added to you dashboard')
-        this.props.history.push('/dashboard')
-      })
-  }
-  removePlaceToMyTrip(){
-    const user = Auth.getPayload()
-    console.log(user, this.props.match.params.id)
-    axios
-      .put(`/api/users/${user.sub}`, {place: this.props.match.params.id, action: 'remove'}, {
-        headers: { Authorization: `Bearer ${Auth.getToken()}` }
-      })
-      .then(() => {
-        Flash.setMessage('success', 'New trip remove from you dashboard')
         this.props.history.push('/dashboard')
       })
   }
@@ -72,7 +54,6 @@ class PlacesShow extends React.Component {
   }
 
   getPlaceDetails(){
-    console.log(this.props.match.params.id)
     axios.get(`/api/places/${this.props.match.params.id}`)
       .then(res => this.setState({ place: res.data }))
     axios.get(`/api/places/${this.props.match.params.id}/weather`)
@@ -88,9 +69,8 @@ class PlacesShow extends React.Component {
     return `wi wi-${className} is-size-1`
   }
 
-
   render() {
-    console.log(this.props.location.pathname.includes('user'))
+    const userHasPlace = this.props.location.pathname.includes('user')
     if(!this.state.place) return null
     const { name, country, image, descriptLong, budget1, budget2, budget3 } = this.state.place
     if(!this.state.weather) return null
@@ -99,18 +79,9 @@ class PlacesShow extends React.Component {
         <div className="container">
           <h2 className="title is-1">{name}</h2>
           {Auth.isAuthenticated() &&
-            !this.props.location.pathname.includes('user') &&
-              <button
-                className="button"
-                id="add"
-                onClick={this.addPlaceToMyTrip}>Add to My Trip</button>
-          }
-          {Auth.isAuthenticated() &&
-            this.props.location.pathname.includes('user') &&
-              <button
-                className="button"
-                id="remove"
-                onClick={this.removePlaceToMyTrip}>Remove From My Trip</button>
+            <button
+              className="button button-add-remove"
+              onClick={this.updatePlaceToMyTrip}>{userHasPlace ? 'Remove From' : 'Add To'} My Trip</button>
           }
           <div className="columns">
             <div className="column">
@@ -125,7 +96,6 @@ class PlacesShow extends React.Component {
               <p><span>Shoe-String:</span> £{budget1}/day</p>
               <p><span>Mid-Range:</span> £{budget2}/day</p>
               <p><span>Luxury:</span> £{budget3}/day</p>
-
 
               <h4 className="title is-4">Weather</h4>
 
@@ -150,10 +120,9 @@ class PlacesShow extends React.Component {
           </div>
         )}
 
-
         <div className="container">
           <div className="comments">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleCommentSubmit}>
               <div className="field">
                 <label className="label">Comments</label>
                 <input
@@ -161,7 +130,7 @@ class PlacesShow extends React.Component {
                   name="commentText"
                   placeholder="Add a comment..."
                   value={this.state.text}
-                  onChange={this.handleChange}
+                  onChange={this.handleCommentChange}
                 />
               </div>
               <button className="button">Add Comment</button>
@@ -172,6 +141,7 @@ class PlacesShow extends React.Component {
         <div className="level">
           <h4 className="title is-4">Weather at Location</h4>
         </div>
+
         <div className="container level">
           {this.state.weather.daily.data.map(day =>
             <div key={day.time} >
@@ -185,7 +155,6 @@ class PlacesShow extends React.Component {
         </div>
 
       </section>
-
     )
   }
 }

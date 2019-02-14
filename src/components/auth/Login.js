@@ -27,7 +27,10 @@ class Login extends React.Component {
         Flash.setMessage('success', res.data.message)
         this.props.history.push('/dashboard')
       })
-      .catch(err => alert(err.message))
+      .catch(() => {
+        Flash.setMessage('danger', 'Authorization failed')
+        this.props.history.push('/login')
+      })
   }
 
   handleChange({ target: {name, value}}) {

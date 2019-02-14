@@ -5,7 +5,6 @@ import Flash from '../../lib/Flash'
 class FlashMessages extends React.Component {
   constructor() {
     super()
-
     this.state = { messages: null }
   }
 

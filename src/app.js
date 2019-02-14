@@ -9,15 +9,14 @@ import './style.scss'
 
 import NavBar from './components/common/NavBar'
 import Home from './Home'
-import PlacesShow from './components/places/PlacesShow'
 import PlacesIndex from './components/places/PlacesIndex'
+import PlacesShow from './components/places/PlacesShow'
 import PlacesNew from './components/places/PlacesNew'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-import Dashboard from './components/dashboard'
+import Dashboard from './components/Dashboard'
 import SecureRoute from './components/common/SecureRoute'
 import FlashMessage from './components/common/FlashMessage'
-import DraggableComponent from './components/places/DraggableComponent'
 
 class App extends React.Component {
   render() {
@@ -29,7 +28,6 @@ class App extends React.Component {
           <FlashMessage/>
 
           <Switch>
-            <Route path="/drag" component={DraggableComponent} />
             <SecureRoute path="/dashboard" component={Dashboard} />
             <SecureRoute path="/places/new" component={PlacesNew} />
             <Route path="/places/:id" component={PlacesShow} />

@@ -31,7 +31,6 @@ class NavBar extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <nav className="navbar">
         <div className="container">
@@ -55,7 +54,6 @@ class NavBar extends React.Component {
           </div>
           <div className={`navbar-menu ${this.state.navBarOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-
               {Auth.getPayload().admin && <Link className="navbar-item" to="/places/new">Add Place</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
