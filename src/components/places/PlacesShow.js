@@ -70,36 +70,36 @@ class PlacesShow extends React.Component {
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
 
-
               <h4 className="title is-4">Budget</h4>
               <p>£20/day</p>
-
 
               <h4 className="title is-4">Best time to visit</h4>
               <p>July to October</p>
 
-
             </div>
-            <div>
-              {this.state.weather.daily.data.map(day =>
-                <div key={day.time}>
-                  <h4>{moment.unix(day.time).format('dddd')}</h4>
-                  <p>
-                    <i className={this.getIconClass(day.icon)}></i>
-                  </p>
-                  <p>{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
-                </div>
-              )}
-            </div>
-
-
-
           </div>
         </div>
 
         <div className="container" id="show-description">
-          <h4 className="title is-4">Description</h4>
-          <p>{descriptLong}</p>
+          <div className="level">
+            <h4 className="title is-4">Description</h4>
+          </div>
+          <p className="descriptLong">{descriptLong}</p>
+        </div>
+
+        <div className="level">
+          <h4 className="title is-4">Weather at Location</h4>
+        </div>
+        <div className="container level">
+          {this.state.weather.daily.data.map(day =>
+            <div key={day.time} >
+              <h5>{moment.unix(day.time).format('dddd')}</h5>
+              <p>
+                <i className={this.getIconClass(day.icon)}></i>
+              </p>
+              <p className="temp">{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
+            </div>
+          )}
         </div>
 
 

@@ -34,7 +34,8 @@ function getWeatherRoute(req, res) {
     .findById(req.params.id)
     .then(places => {
       rp.get(`https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/${places.geog[0]},${places.geog[1]}`, {
-        json: true
+        json: true,
+        qs: { units: 'si'}
       })
         .then(data => res.json(data))
     })
