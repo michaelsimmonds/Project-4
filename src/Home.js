@@ -14,7 +14,7 @@ class Home extends React.Component{
     const rndm = Math.random()
     const num = Math.floor(rndm*6)
     this.setState({bg: num})
-    setTimeout(this.updateBg, 1000*5)
+    setTimeout(this.updateBg, 1000*8)
   }
 
   componentDidMount(){
@@ -23,8 +23,8 @@ class Home extends React.Component{
 
   render() {
     return(
-      <section className={`bg bg-${this.state.bg}`}>
-        <div className="hero-body">
+      <section className= {`bg bg-${this.state.bg}`}>
+        <div className="hero">
           <div className="container">
             <Link to="/places">
               <h1 className="title is-1">

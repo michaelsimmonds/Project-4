@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
 import Auth from '../lib/Auth'
 import PlaceCard from './places/PlaceCard'
+import Loading from './places/Loading'
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -231,6 +232,7 @@ class Dashboard extends Component{
   }
 
   render(){
+    if(!this.state.map && !this.state.mapDOMElement) return <Loading />
     return(
       <section className="section">
         <div className="container dash-container">

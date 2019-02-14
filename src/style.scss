@@ -5,14 +5,17 @@ $font-colour: #F5F7FB;
 }
 
 body {
-  background-color: #EBF0F8;
+  // background-color: #EBF0F8;
   min-height: 100vh;
 }
 
+nav.navbar {
+  background-color: transparent;
+}
 .navbar {
-  background: #94B0DA;
+  // background-color: none;
   .navbar-item{
-  color: $font-colour;
+  color: black;
   font-weight: bold;
   font-size: 21px;
   }
@@ -22,28 +25,28 @@ body {
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  transition: background-image 3s ease-in-out;
+  transition: background-image 10s;
 }
 .bg-0{
-  background-image: url('https://i0.wp.com/acrawsa.org.au/wp-content/uploads/2017/12/Uluru.jpg?fit=1200%2C800&ssl=1');
+  background-image: url('/assets/Australia_Uluru.jpg');
 }
 .bg-1{
-  background-image: url('https://cdn8.dissolve.com/p/D1024_57_242/D1024_57_242_1200.jpg');
+  background-image: url('/assets/D1024_57_242_1200.jpg');
 }
 .bg-2{
-  background-image: url('https://www.penguinandpia.com/wp-content/uploads/2018/11/trips-to-see-the-northern-lights-tromso-norway.jpg');
+  background-image: url('/assets/australia.jpg');
 }
 .bg-3{
-  background-image: url('https://www.thesun.co.uk/wp-content/uploads/2016/06/nintchdbpict000246685683.jpg?strip=all&w=1200&h=800&crop=1');
+  background-image: url('/assets/japan.jpg');
 }
 .bg-4{
-  background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/7682518d-3cc3-41dd-b8d5-9657f5da614e/dcwyl84-846ac967-255d-4ecf-91ca-730310adad47.jpg');
+  background-image: url('/assets/northern.jpg');
 }
 .bg-5{
-  background-image: url('https://www.planete3w.fr/wp-cv-content/uploads/2017/08/Whitsundays-Australie-Grande-Barriere-de-Corail.jpg');
+  background-image: url('/assets/petra.jpg');
 }
 .bg-6{
-  background-image: url('https://japanesethingsblog.files.wordpress.com/2016/08/mount-fuji.jpg?w=1200&h=800&crop=1');
+  background-image: url('/assets/pyramids.jpg');
 }
 
 h1.title.is-1 {
@@ -228,4 +231,21 @@ div .level {
 
 .temp {
   margin-top: 5px;
+}
+
+//LOADING
+@keyframes rotate {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(90deg);}
+  50% {transform: rotate(180deg);}
+  75% {transform: rotate(270deg);}
+  100% {transform: rotate(360deg);}
+}
+
+div#loading {
+  width: 350px;
+  height: 350px;
+  margin: 20vh auto;
+  background-image: url('https://www.globe.gov/globe-gov-home-portlet/images/learn-earth-system/learn-earth-system-clean.png');
+  animation: rotate 5s linear infinite;
 }

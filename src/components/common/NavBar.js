@@ -33,7 +33,7 @@ class NavBar extends React.Component {
   render() {
     console.log(this.state)
     return (
-      <nav className="navbar">
+      <nav className="navbar is-transparent">
         <div className="container">
           <div className="navbar-brand">
 

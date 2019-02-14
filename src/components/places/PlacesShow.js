@@ -3,6 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 import 'weather-icons/css/weather-icons.css'
 
+import Loading from './Loading'
 import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
 
@@ -84,16 +85,21 @@ class PlacesShow extends React.Component {
       .split('-')
       .reverse()
       .join('-')
-
+    if(className === 'day-clear') {
+      return 'wi wi-day-sunny is-size-1'
+    }
+    if(className === 'wind') {
+      return 'wi wi-day-windy is-size-1'
+    }
     return `wi wi-${className} is-size-1`
   }
 
 
   render() {
     console.log(this.props.location.pathname.includes('user'))
-    if(!this.state.place) return null
+    if(!this.state.place) return <Loading />
     const { name, country, image, descriptLong, budget1, budget2, budget3 } = this.state.place
-    if(!this.state.weather) return null
+    if(!this.state.weather) return <Loading />
     return(
       <section className="section">
         <div className="container">
@@ -120,17 +126,13 @@ class PlacesShow extends React.Component {
             <div className="column">
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
+              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
+              <h4 className="title is-4">Budget</h4>}
+              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
+              <p><span>Shoe-String:</span> £{budget1}/day</p>}
+              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') && <p><span>Mid-Range:</span> £{budget2}/day</p>}
+              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&<p><span>Luxury:</span> £{budget3}/day</p>}
 
-              <h4 className="title is-4">Budget</h4>
-              <p><span>Shoe-String:</span> £{budget1}/day</p>
-              <p><span>Mid-Range:</span> £{budget2}/day</p>
-              <p><span>Luxury:</span> £{budget3}/day</p>
-
-
-              <h4 className="title is-4">Weather</h4>
-
-              <h4 className="title is-4">Best time to visit</h4>
-              <p>July to October</p>
 
             </div>
           </div>
@@ -146,7 +148,7 @@ class PlacesShow extends React.Component {
 
         {this.state.place.comments && this.state.place.comments.map(comment =>
           <div key={comment._id}>
-            <PlacesComment comment={comment}/>
+              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') && <PlacesComment comment={comment}/>}
           </div>
         )}
 
