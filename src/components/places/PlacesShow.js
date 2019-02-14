@@ -7,7 +7,7 @@ import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
 
 import PlacesComment from './PlacesComment'
-
+import TwitterCard from './TwitterCard'
 class PlacesShow extends React.Component {
 
   constructor() {
@@ -18,7 +18,8 @@ class PlacesShow extends React.Component {
       place: {
         comments: ''
       },
-      weather: ''
+      weather: '',
+      twitter: []
     }
     this.updatePlaceToMyTrip = this.updatePlaceToMyTrip.bind(this)
     this.handleCommentChange = this.handleCommentChange.bind(this)
@@ -58,6 +59,8 @@ class PlacesShow extends React.Component {
       .then(res => this.setState({ place: res.data }))
     axios.get(`/api/places/${this.props.match.params.id}/weather`)
       .then(res => this.setState({ weather: res.data }))
+    axios.get(`/api/places/${this.props.match.params.id}/twitter`)
+      .then(res => this.setState({ twitter: res.data }))
   }
 
   getIconClass(icon) {
@@ -70,10 +73,12 @@ class PlacesShow extends React.Component {
   }
 
   render() {
+    console.log(this.state.twitter)
     const userHasPlace = this.props.location.pathname.includes('user')
     if(!this.state.place) return null
     const { name, country, image, descriptLong, budget1, budget2, budget3 } = this.state.place
     if(!this.state.weather) return null
+    if(!this.state.twitter) return null
     return(
       <section className="section">
         <div className="container">
@@ -153,6 +158,10 @@ class PlacesShow extends React.Component {
             </div>
           )}
         </div>
+
+        {this.state.twitter.map((tweet, index) =>
+          <TwitterCard key={index} {...tweet}/>
+        )}
 
       </section>
     )

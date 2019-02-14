@@ -1,5 +1,6 @@
-const Place = require('../models/place')
 const rp = require('request-promise')
+const Twitter = require('twitter')
+const Place = require('../models/place')
 
 function indexRoute( req, res ){
   Place
@@ -51,10 +52,42 @@ function getWeatherRoute(req, res) {
     })
 }
 
+function getTwitterCommentsRoute(req, res) {
+
+  Place
+    .findById(req.params.id)
+    .then(place => {
+      const client = new Twitter({
+        consumer_key: process.env.CONSUMER_KEY,
+        consumer_secret: process.env.CONSUMER_SECRET,
+        access_token_key: process.env.ACCESS_TOKEN_KEY,
+        access_token_secret: process.env.ACCESS_TOKEN_SECRET
+      })
+      const data = []
+      return client.get(`search/tweets.json?q=${place.name}&include_entities=1`, function(error, tweets, response) {
+        if (!error) {
+          Object.keys(tweets.statuses).map(tweet => {
+            const newTweet = {
+              screenName: tweets.statuses[tweet].user.screen_name,
+              image: tweets.statuses[tweet].user.profile_image_url,
+              name: tweets.statuses[tweet].user.name,
+              text: tweets.statuses[tweet].text,
+              created: tweets.statuses[tweet].created_at
+            }
+            console.log(newTweet)
+            data.push(newTweet)
+          })
+        }
+        res.status(200).send(data)
+      })
+    })
+}
+
 module.exports = {
   index: indexRoute,
   create: createRoute,
   show: showRoute,
   commentCreate: commentCreateRoute,
-  getWeather: getWeatherRoute
+  getWeather: getWeatherRoute,
+  getTwitterComments: getTwitterCommentsRoute
 }
