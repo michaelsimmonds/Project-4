@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import mapboxgl from 'mapbox-gl'
 import axios from 'axios'
@@ -272,6 +273,9 @@ class Dashboard extends Component{
                       </Draggable>
                     ))}
                     {provided.placeholder}
+                    <Link to='/places'>
+                      <div className="add-trip"><i class="fas fa-plus"></i></div>
+                    </Link>
                   </div>
                 </div>
               )}

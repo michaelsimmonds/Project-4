@@ -34,4 +34,7 @@ router.route('/places/:id/comments')
 router.route('/places/:id/weather')
   .get(placesController.getWeather)
 
+router.route('/places/:id/twitter')
+  .get(placesController.getTwitterComments)
+
 module.exports = router

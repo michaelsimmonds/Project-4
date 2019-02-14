@@ -8,6 +8,7 @@ import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
 
 import PlacesComment from './PlacesComment'
+import TwitterCard from './TwitterCard'
 
 class PlacesShow extends React.Component {
 
@@ -59,6 +60,8 @@ class PlacesShow extends React.Component {
       .then(res => this.setState({ place: res.data }))
     axios.get(`/api/places/${this.props.match.params.id}/weather`)
       .then(res => this.setState({ weather: res.data }))
+    axios.get(`/api/places/${this.props.match.params.id}/twitter`)
+      .then(res => this.setState({ twitter: res.data }))
   }
 
   getIconClass(icon) {
@@ -125,7 +128,6 @@ class PlacesShow extends React.Component {
           </div>
         </div>
 
-
         {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
         <div className="container level">
           {this.state.weather.daily.data.map(day =>
@@ -169,7 +171,9 @@ class PlacesShow extends React.Component {
           </div>
         </div>
 
-
+        {this.state.twitter.map((tweet, index) =>
+          <TwitterCard key={index} {...tweet} />
+        )}
 
       </section>
     )
