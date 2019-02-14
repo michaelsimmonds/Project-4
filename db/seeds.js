@@ -17,7 +17,10 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://www.sungatetours.com/wp-content/uploads/2014/03/Panoramic-View-of-Machu-Pichu-Citadel.jpg',
       descriptLong: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley. Most archaeologists believe that Machu Picchu was built as an estate for the Inca emperor Pachacuti (1438–1472). Often mistakenly referred to as the “Lost City of the Incas” (a title more accurately applied to Vilcabamba), it is the most familiar icon of Inca civilization. The Incas built the estate around 1450 but abandoned it a century later at the time of the Spanish Conquest. Although known locally, it was not known to the Spanish during the colonial period and remained unknown to the outside world until American historian Hiram Bingham brought it to international attention in 1911.',
       descriptShort: 'Machu Picchu is a 15th-century Inca citadel located in the Cusco Region, Peru, above the Sacred Valley',
-      geog: [-13.1631, -72.5450]
+      geog: [-13.1631, -72.5450],
+      budget1: '12',
+      budget2: '33',
+      budget3: '105'
     },{
       name: 'Niagra Falls',
       country: 'Canada/USA',
@@ -108,14 +111,14 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://www.thingstodoinbali.com/wp-content/uploads/rice-fields-bali_tegallalang-rice-terraces.jpg',
       descriptLong: 'Tegalalang rice fields is a series of rice paddies located close to Ubud, in the centre of Bali, famous for its terraced layout. This is a traditional Balinese irrigation system known as subak. Positioned in a valley the Tegalalang rice terraces offer extremely scenic lookouts over the rice fields and surrounding green landscape. It’s a very popular tourist hotspot in Bali and a must-see in many Bali itineraries.',
       descriptShort: 'Tegalalang Rice Terrace is one of the famous tourist objects in Bali situated in Tegalalang Village north of Ubud Bali featured by the amazing rice terrace set the cliff',
-      geog: [-43.466, 170.191]
+      geog: [-8.335, 115.088]
     },{
       name: 'Danum Valley, Sabah',
       country: 'Borneo',
       image: 'https://i0.wp.com/borneoadventure.com/v3/wp-content/uploads/2012/06/sabah-danum-orangutan-01.jpg?w=2000&quality=60&strip=all&ssl=1',
       descriptLong: 'It is estimated that there are 500 orangutan living in the Danum Valley Conservation Area. Danum’s 43,800 hectares of virgin rainforest are home to an astonishing variety of wildlife.  It offers some of the best wildlife watching and rainforest experiences in the world. You don’t just come here for the orangutans. You come here for everything. And walk away knowing that a massive tick has been added to your bucket list. There are a range of different treks at Danum. The trekking is relatively easy so you don’t need to be super fit. Plan on staying at least 3 nights if you want to see an orangutan.',
       descriptShort: 'Danum Valley is the best place to see wild orangutan in pristine, undisturbed forest. Sightings are not ‘guaranteed’ but there is a pretty good chance of seeing orangutan in its natural habitat at Danum.',
-      geog: [-43.466, 170.191]
+      geog: [-4.916, 117.666]
     },{
       name: 'The Whitsundays',
       country: 'Australia',
@@ -157,7 +160,7 @@ mongoose.connect(config.dbURI, (err, db) => {
       image: 'https://media.timeout.com/images/105319467/750/562/image.jpg',
       descriptLong: 'Drive for an hour on a bumpy dirt road in rural Chile for a great reward: 17 natural hot springs tucked into a narrow canyon of verdant rainforest. Japanese-inspired redwood walkways connect the steaming pools, which vary in size and temperature (there are multiple cool-down options: three plunge pools and two human-made waterfalls). The swirl of steam continuously alters your perspective as you gaze through the trees, and changing rooms have grass planted on the roofs. Be sure to visit the café pre- or post-soak, which is heated by an outdoor oven built into the wall and offers piping hot, locally grown coffee.',
       descriptShort: 'This Japanese-inspired labyrinth of hot springs is hidden in a Chilean forest. Nestled in an almost unbelievably lush forest canyon in Chile, the hot spring spa known as Termas Geometricas is a stunning maze of red planks that wind through the trees.',
-      geog: [39.500, 71.874]
+      geog: [-39.500, -71.874]
     },{
       name: 'Redwood National Park',
       country: 'California, USA',

@@ -28,6 +28,9 @@ router.route('/users/:id')
   .get(usersController.show)
   .put(secureRoute, usersController.update)
 
+router.route('/places/:id/comments')
+  .post(secureRoute, placesController.commentCreate)
+
 router.route('/places/:id/weather')
   .get(placesController.getWeather)
 

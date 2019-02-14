@@ -6,15 +6,40 @@ import 'weather-icons/css/weather-icons.css'
 import Auth from '../../lib/Auth'
 import Flash from '../../lib/Flash'
 
+import PlacesComment from './PlacesComment'
+
 class PlacesShow extends React.Component {
 
   constructor() {
     super()
 
-    this.state = {}
+    this.state = {
+      commentText: '',
+      place: {
+        comments: ''
+      }
+    }
     this.addPlaceToMyTrip = this.addPlaceToMyTrip.bind(this)
     this.removePlaceToMyTrip = this.removePlaceToMyTrip.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+
+  }
+
+  handleChange({ target: {value}}) {
+    this.setState({commentText: value})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    axios
+      .post(`/api/places/${this.props.match.params.id}/comments`, {text: this.state.commentText},
+        { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
+      .then(() => this.getPlaceDetails())
+      .catch(err => alert(err.message))
+
     this.getIconClass = this.getIconClass.bind(this)
+
   }
 
   addPlaceToMyTrip(){
@@ -43,6 +68,11 @@ class PlacesShow extends React.Component {
   }
 
   componentDidMount() {
+    this.getPlaceDetails()
+  }
+
+  getPlaceDetails(){
+    console.log(this.props.match.params.id)
     axios.get(`/api/places/${this.props.match.params.id}`)
       .then(res => this.setState({ place: res.data }))
     axios.get(`/api/places/${this.props.match.params.id}/weather`)
@@ -62,9 +92,8 @@ class PlacesShow extends React.Component {
   render() {
     console.log(this.props.location.pathname.includes('user'))
     if(!this.state.place) return null
+    const { name, country, image, descriptLong, budget1, budget2, budget3 } = this.state.place
     if(!this.state.weather) return null
-    console.log(this.state.weather)
-    const { name, country, image, descriptLong } = this.state.place
     return(
       <section className="section">
         <div className="container">
@@ -93,7 +122,12 @@ class PlacesShow extends React.Component {
               <p>{country}</p>
 
               <h4 className="title is-4">Budget</h4>
-              <p>£20/day</p>
+              <p><span>Shoe-String:</span> £{budget1}/day</p>
+              <p><span>Mid-Range:</span> £{budget2}/day</p>
+              <p><span>Luxury:</span> £{budget3}/day</p>
+
+
+              <h4 className="title is-4">Weather</h4>
 
               <h4 className="title is-4">Best time to visit</h4>
               <p>July to October</p>
@@ -107,6 +141,32 @@ class PlacesShow extends React.Component {
             <h4 className="title is-4">Description</h4>
           </div>
           <p className="descriptLong">{descriptLong}</p>
+        </div>
+
+
+        {this.state.place.comments && this.state.place.comments.map(comment =>
+          <div key={comment._id}>
+            <PlacesComment comment={comment}/>
+          </div>
+        )}
+
+
+        <div className="container">
+          <div className="comments">
+            <form onSubmit={this.handleSubmit}>
+              <div className="field">
+                <label className="label">Comments</label>
+                <input
+                  className="textarea"
+                  name="commentText"
+                  placeholder="Add a comment..."
+                  value={this.state.text}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button className="button">Add Comment</button>
+            </form>
+          </div>
         </div>
 
         <div className="level">
@@ -123,7 +183,6 @@ class PlacesShow extends React.Component {
             </div>
           )}
         </div>
-
 
       </section>
 
