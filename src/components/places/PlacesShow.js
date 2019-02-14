@@ -87,11 +87,11 @@ class PlacesShow extends React.Component {
 
           <div className="columns">
 
-            <div className="column is-two-fifths">
+            <div className="column is-half">
               <div id="show-image" style={{backgroundImage: `url(${image})`}} alt={name} />
             </div>
 
-            <div className="column is-three-fifths">
+            <div className="column is-half">
 
               {Auth.isAuthenticated() &&
               <button
@@ -101,25 +101,45 @@ class PlacesShow extends React.Component {
 
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
+
+              <div id="show-description">
+                <div>
+                  <h4 className="title is-4">Description</h4>
+                  <p className="descriptLong">{descriptLong}</p>
+                </div>
+              </div>
+
+
+
+
               {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
               <h4 className="title is-4">Budget</h4>}
-              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
-              <p><span>Shoe-String:</span> £{budget1}/day</p>}
-              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') && <p><span>Mid-Range:</span> £{budget2}/day</p>}
-              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&<p><span>Luxury:</span> £{budget3}/day</p>}
+              <div className="level">
+                {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
+                <p><span>Shoe-String:</span> £{budget1}/day</p>}
+                {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') && <p><span>Mid-Range:</span> £{budget2}/day</p>}
+                {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&<p><span>Luxury:</span> £{budget3}/day</p>}
+              </div>
 
             </div>
           </div>
         </div>
 
-        
 
-        <div className="container" id="show-description">
-          <div>
-            <h4 className="title is-4">Description</h4>
-            <p className="descriptLong">{descriptLong}</p>
-          </div>
-        </div>
+        {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
+        <div className="container level">
+          {this.state.weather.daily.data.map(day =>
+            <div key={day.time} >
+              <h5>{moment.unix(day.time).format('dddd')}</h5>
+              <p>
+                <i className={this.getIconClass(day.icon)}></i>
+              </p>
+              <p className="temp">{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
+            </div>
+          )}
+        </div>}
+
+
 
 
         <div className="container">
@@ -149,22 +169,7 @@ class PlacesShow extends React.Component {
           </div>
         </div>
 
-        {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
-        <div className="level">
-          <h4 className="title is-4">Weather at Location</h4>
-        </div>}
-        {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
-        <div className="container level">
-          {this.state.weather.daily.data.map(day =>
-            <div key={day.time} >
-              <h5>{moment.unix(day.time).format('dddd')}</h5>
-              <p>
-                <i className={this.getIconClass(day.icon)}></i>
-              </p>
-              <p className="temp">{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
-            </div>
-          )}
-        </div>}
+
 
       </section>
     )

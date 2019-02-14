@@ -96,15 +96,15 @@ const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
 export default PlaceForm
 
 
-  // <div className="field">
-  //   <label className="label">Image url</label>
-  //   <div className="control">
-  //     <input
-  //       className="input"
-  //       placeholder="Image url"
-  //       name="image"
-  //       onChange={handleChange}
-  //       value={data.image}
-  //     />
-  //   </div>
-  // </div>
+// <div className="field">
+//   <label className="label">Image url</label>
+//   <div className="control">
+//     <input
+//       className="input"
+//       placeholder="Image url"
+//       name="image"
+//       onChange={handleChange}
+//       value={data.image}
+//     />
+//   </div>
+// </div>

@@ -199,11 +199,11 @@ h4.title.is-4 {
 }
 
 #show-image {
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 500px;
   margin-left: 0;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   border-radius: 5px;
   border-radius: 5px;
 }
@@ -264,11 +264,11 @@ div#loading {
   animation: rotate 5s linear infinite;
 }
 
-.descriptLong {
-  text-align: justify;
-  -moz-text-align-last: center;
-  text-align-last: center;
-}
+// .descriptLong {
+//   text-align: justify;
+//   -moz-text-align-last: center;
+//   text-align-last: center;
+// }
 
 .custom-marker {
   background-repeat: no-repeat;
