@@ -5,7 +5,7 @@ $font-colour: #F5F7FB;
 }
 
 body {
-  background-color: #EBF0F8;
+  background-color: #CADCE7;
   min-height: 100vh;
   min-width: 100vw;
 }
@@ -20,6 +20,14 @@ nav.navbar {
   font-weight: bold;
   font-size: 25px;
   text-shadow: 1px 1px 5px #000000;
+  transition: color 1s ease;
+
+  &:hover {
+    color: black;
+    text-shadow: none;
+    text-shadow: 2px 2px 5px $font-colour;
+    font-weight: bolder;
+  }
   }
 }
 

@@ -148,11 +148,11 @@ class PlacesShow extends React.Component {
 
         {this.state.place.comments && this.state.place.comments.map(comment =>
           <div key={comment._id}>
-              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') && <PlacesComment comment={comment}/>}
+            <PlacesComment comment={comment}/>
           </div>
         )}
 
-
+        {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
         <div className="container">
           <div className="comments">
             <form onSubmit={this.handleSubmit}>
@@ -169,11 +169,13 @@ class PlacesShow extends React.Component {
               <button className="button">Add Comment</button>
             </form>
           </div>
-        </div>
+        </div>}
 
+        {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
         <div className="level">
           <h4 className="title is-4">Weather at Location</h4>
-        </div>
+        </div>}
+        {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
         <div className="container level">
           {this.state.weather.daily.data.map(day =>
             <div key={day.time} >
@@ -184,7 +186,7 @@ class PlacesShow extends React.Component {
               <p className="temp">{Math.round(day.temperatureLow)}°C / {Math.round(day.temperatureHigh)}°C</p>
             </div>
           )}
-        </div>
+        </div>}
 
       </section>
 
