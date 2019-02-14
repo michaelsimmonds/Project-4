@@ -15,7 +15,6 @@ describe('GET /places', () => {
       .then(() => done())
   })
 
-
   it('should return a 200 response', done => {
     api
       .get('/api/places')
@@ -61,5 +60,5 @@ describe('GET /places', () => {
     Place.remove({})
       .then(() =>  done())
   })
-  
+
 })

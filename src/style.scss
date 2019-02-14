@@ -89,7 +89,7 @@ button.button {
   font-weight: bold;
 }
 
-#add, #remove {
+.button-add-remove {
   float: right;
 }
 
@@ -185,8 +185,6 @@ div.place-title {
   padding-top: 25px;
 }
 
-
-
 //SHOW PAGE
 
 h2.title.is-1 {
@@ -201,11 +199,17 @@ h4.title.is-4 {
 }
 
 #show-image {
-  height: 200%;
+  height: 400px;
+  width: 400px;
+  margin-left: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 5px;
+  border-radius: 5px;
 }
 
 #show-description {
-  margin-top: 175px;
+  margin-top: 50px;
 }
 
 //DASHBOARD
@@ -216,11 +220,7 @@ h4.title.is-4 {
   margin: none;
 }
 
-.descriptLong {
-  text-align: justify;
-  -moz-text-align-last: center;
-  text-align-last: center;
-}
+
 
 #map {
   margin: auto;
@@ -262,4 +262,34 @@ div#loading {
   margin: 20vh auto;
   background-image: url('http://pngimg.com/uploads/globe/globe_PNG52.png');
   animation: rotate 5s linear infinite;
+
+.descriptLong {
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+}
+
+.custom-marker {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  transition-property: height, width;
+  transition-duration: .5s, .5s;
+  cursor: pointer;
+}
+
+.custom-marker:hover {
+  height: 10em;
+  width: 10em;
+}
+
+.custom-marker img {
+  justify-content: center;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
 }

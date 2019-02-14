@@ -1,6 +1,7 @@
 import React from 'react'
-
+import ReactFilestack from 'filestack-react'
 import MapboxAutocomplete from 'react-mapbox-autocomplete'
+
 
 const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
   return(
@@ -32,18 +33,19 @@ const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
         </div>
       </div>
 
-      <div className="field">
-        <label className="label">Image url</label>
-        <div className="control">
-          <input
-            className="input"
-            placeholder="Image url"
-            name="image"
-            onChange={handleChange}
-            value={data.image}
-          />
-        </div>
-      </div>
+      <ReactFilestack
+        apikey={ `${process.env.FILESTACK_API_KEY}` }
+        mode={'pick'}
+        onSuccess={(res) => handleChange({
+          target: {
+            name: 'image',
+            value: res.filesUploaded[0].url
+          }})}
+        onError={(e) => console.log(e)}
+        buttonText={'Add Image'}
+        buttonClass={'button is-rounded'}
+      />
+
 
       <div className="field">
         <label className="label">Short Description</label>
@@ -92,3 +94,17 @@ const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
 }
 
 export default PlaceForm
+
+
+  // <div className="field">
+  //   <label className="label">Image url</label>
+  //   <div className="control">
+  //     <input
+  //       className="input"
+  //       placeholder="Image url"
+  //       name="image"
+  //       onChange={handleChange}
+  //       value={data.image}
+  //     />
+  //   </div>
+  // </div>

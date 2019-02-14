@@ -164,14 +164,24 @@ class Dashboard extends Component{
   createMarkups(){
 
     this.markersCoord && this.markersCoord.forEach(geoCoord => {
+      console.log(geoCoord)
+      const markerDOM = document.createElement('div')
+      markerDOM.className = 'custom-marker'
+      markerDOM.style.backgroundImage = `url(${geoCoord.image})`
 
-      const markerDOM = document.createElement('img')
-      markerDOM.setAttribute('class', 'marker')
-      markerDOM.setAttribute('src', 'https://s1.qwant.com/thumbr/0x380/9/3/956b158d13001c1f57346b9fa0932fa2bc0aba7071bdc679d34e390524c1da/2000px-Map_marker.svg.png?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F8%2F88%2FMap_marker.svg%2F2000px-Map_marker.svg.png&q=0&b=1&p=0&a=1')
-
-      const markers = new mapboxgl.Marker({element: markerDOM, anchor: 'bottom'})// eslint-disable-line no-unused-vars
+      return new mapboxgl.Marker({element: markerDOM, anchor: 'center'})
         .setLngLat([String(geoCoord.lng), String(geoCoord.lat)])
+        .setPopup(new mapboxgl.Popup({ offset: 25 })
+          .setHTML(`<h3>${geoCoord.name}</h3>`))
         .addTo(this.map)
+
+      // const markerDOM = document.createElement('img')
+      // markerDOM.setAttribute('class', 'marker')
+      // markerDOM.setAttribute('src', 'https://s1.qwant.com/thumbr/0x380/9/3/956b158d13001c1f57346b9fa0932fa2bc0aba7071bdc679d34e390524c1da/2000px-Map_marker.svg.png?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F8%2F88%2FMap_marker.svg%2F2000px-Map_marker.svg.png&q=0&b=1&p=0&a=1')
+      //
+      // const markers = new mapboxgl.Marker({element: markerDOM, anchor: 'bottom'})// eslint-disable-line no-unused-vars
+      //   .setLngLat([String(geoCoord.lng), String(geoCoord.lat)])
+      //   .addTo(this.map)
     })
   }
 
@@ -180,9 +190,9 @@ class Dashboard extends Component{
     this.map = new mapboxgl.Map({
       container: this.mapDOMElement,
       style: 'mapbox://styles/mapbox/streets-v10',
-      center: [0, 0],
+      center: [15, 24],
       scrollZoom: false,
-      zoom: 0.5
+      zoom: 0.75
     })
   }
 
@@ -204,7 +214,7 @@ class Dashboard extends Component{
   getMarkerCoords(places){
     return new Promise(resolve => {
       this.markersCoord = places.map(place =>
-        ({ lat: place.geog[0], lng: place.geog[1] })
+        ({ lat: place.geog[0], lng: place.geog[1], image: place.image, name: place.name }) //ADDED IMAGE AND NAME HERE
       )
       resolve()
     })
@@ -212,10 +222,9 @@ class Dashboard extends Component{
 
   componentDidMount(){
 
-    const user = Auth.getPayload()
-
-    axios(`/api/users/${user.sub}`)
+    axios(`/api/users/${Auth.getPayload().sub}`)
       .then(({ data }) => this.setState({ user: data }))
+
   }
 
   componentDidUpdate(){
@@ -254,7 +263,10 @@ class Dashboard extends Component{
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            <PlaceCard {...item} userHasTrip="true" frontOnly="true"/>
+                            <PlaceCard {...item}
+                              userHasTrip="true"
+                              frontOnly="true"
+                            />
                           </div>
                         )}
                       </Draggable>

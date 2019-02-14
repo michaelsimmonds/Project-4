@@ -46,7 +46,6 @@ class PlacesNew extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return(
       <main className="section">
         <div className="container">

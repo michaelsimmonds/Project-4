@@ -8,14 +8,14 @@ import Auth from '../../lib/Auth'
 class PlacesIndex extends React.Component {
   constructor() {
     super()
-
     this.state = {
       places: []
     }
   }
 
   componentDidMount() {
-    //If user is logged in, only show the place he doesn't have already picked.
+    //If user is logged in, the response will contain only the places
+    //that the user doesn't have already chosen
     axios.get('/api/places', {
       headers: Auth.isAuthenticated() ?
         { Authorization: `Bearer ${Auth.getToken()}`} : null
