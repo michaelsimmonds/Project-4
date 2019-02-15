@@ -112,10 +112,14 @@ class PlacesShow extends React.Component {
                 </div>
               </div>
 
-
+              {!Auth.isAuthenticated() &&
+                <div>
+                  <h4 className="title is-4" id="ask-login"><strong>Register/Login for more information!</strong></h4>
+                </div>
+              }
 
               {Auth.isAuthenticated()  &&
-              <h4 className="title is-4">Budget</h4>}
+              <h4 className="title is-4" id="budget">Budget</h4>}
               {Auth.isAuthenticated()  &&
                 <div className="level">
                   <p><span>Shoe-String:</span> £{budget1}/day</p>
@@ -142,17 +146,28 @@ class PlacesShow extends React.Component {
         </div>}
 
 
-
+        {Auth.isAuthenticated() &&
         <div className="container">
           <div className="columns">
             <div className="column is-half">
 
+              <h4 className="title is-4">Comments</h4>
+
+              {(this.state.place.comments === []) &&
+                <h4>Be the first to add a comment...</h4>
+              }
+
+              {this.state.place.comments && this.state.place.comments.map(comment =>
+                <div key={comment._id}>
+                  <PlacesComment comment={comment}/>
+                </div>
+              )}
 
               <div className="comments">
                 <form onSubmit={this.handleCommentSubmit}>
                   <div className="field">
                     <input
-                      className="textarea"
+                      className="textarea commentBox"
                       name="commentText"
                       placeholder="Add a comment..."
                       value={this.state.text}
@@ -163,23 +178,18 @@ class PlacesShow extends React.Component {
                 </form>
               </div>
 
-
-              <h4 className="title is-4">Comments</h4>
-              {this.state.place.comments && this.state.place.comments.map(comment =>
-                <div key={comment._id}>
-                  <PlacesComment comment={comment}/>
-                </div>
-              )}
-
             </div>
 
             <div className="column is-half">
+
+              <h4 className="title is-4">Twitter</h4>
+
               {this.state.twitter.map((tweet, index) =>
                 <TwitterCard key={index} {...tweet} />
               )}
             </div>
           </div>
-        </div>
+        </div>}
 
 
       </section>

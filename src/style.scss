@@ -190,11 +190,11 @@ h2.title.is-1 {
   text-align: center;
   margin-bottom: 1.2em;
 }
-
+//
 h4.title.is-4 {
   font-size: 20px;
   margin: auto;
-  padding: 8px 0 5px 0;
+  padding: 0 0 10px 0;
 }
 
 #show-image {
@@ -207,8 +207,8 @@ h4.title.is-4 {
   border-radius: 5px;
 }
 
-#show-description {
-  margin-top: 50px;
+#show-description, #budget, #ask-login {
+  margin-top: 30px;
 }
 
 //DASHBOARD
@@ -225,6 +225,7 @@ h4.title.is-4 {
   width: 800px;
   border-radius: 5px;
 }
+
 .dashboard-trip{
     height:50px;
     & .front {
@@ -233,13 +234,15 @@ h4.title.is-4 {
       height: 50px;
     }
 }
+
 h5 {
   margin-bottom: 15px;
 }
 
-div .level {
-  padding-top: 10px;
-}
+// div .level {
+//   padding-top: 10px;
+// }
+
 .temp {
   margin-top: 5px;
 }
@@ -273,11 +276,9 @@ div#loading {
   animation: rotate 5s linear infinite;
 }
 
-// .descriptLong {
-//   text-align: justify;
-//   -moz-text-align-last: center;
-//   text-align-last: center;
-// }
+.descriptLong {
+  text-align: justify;
+}
 
 .custom-marker {
   background-repeat: no-repeat;
@@ -316,4 +317,8 @@ div#loading {
 .add {
   justify-content: center;
   display: flex;
+}
+
+.commentBox {
+  margin-top: 15px;
 }
