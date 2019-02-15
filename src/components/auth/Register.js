@@ -45,7 +45,7 @@ class Register extends React.Component {
       <main className="section">
         <div className="container">
           <div className="columns">
-            <div className="column is-offset-4">
+            <div className="column is-6 is-offset-3">
               <form onSubmit={this.handleSubmit}>
                 <h2 className="title">Register</h2>
                 <div className="field">

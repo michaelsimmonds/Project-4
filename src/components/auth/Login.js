@@ -44,7 +44,7 @@ class Login extends React.Component {
       <main className="section">
         <div className="container">
           <div className="columns">
-            <div className="column is-offset-4">
+            <div className="column is-offset-3 is-6">
               <form onSubmit={this.handleSubmit}>
                 <h2 className="title">Login</h2>
                 <div className="field">

@@ -4,11 +4,12 @@ import MapboxAutocomplete from 'react-mapbox-autocomplete'
 
 
 const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
+  console.log(data)
   return(
-    <div className="section add">
-      <div className="container">
+    <div className="columns">
+      <div className="column is-6 is-offset-3">
         <form onSubmit={handleSubmit}>
-
+          <h2 className="title">Add a New Place</h2>
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
@@ -34,20 +35,6 @@ const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
               />
             </div>
           </div>
-
-          <ReactFilestack
-            apikey={ `${process.env.FILESTACK_API_KEY}` }
-            mode={'pick'}
-            onSuccess={(res) => handleChange({
-              target: {
-                name: 'image',
-                value: res.filesUploaded[0].url
-              }})}
-            onError={(e) => console.log(e)}
-            buttonText={'Add Image'}
-            buttonClass={'button is-rounded'}
-          />
-
 
           <div className="field">
             <label className="label">Short Description</label>
@@ -79,7 +66,6 @@ const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
             <label className="label">Please select a location</label>
             <div className="control">
               <MapboxAutocomplete
-                className="input"
                 publicKey={process.env.MAPBOX_KEY}
                 inputClass='form-control search'
                 onSuggestionSelect={suggestionSelect}
@@ -88,9 +74,28 @@ const PlaceForm = ({ data, handleChange, handleSubmit, suggestionSelect }) => {
               />
             </div>
           </div>
+          <div className="columns add-place">
+            <div className="column is-5">
 
-          <button>Submit</button>
+              <button className="button">Submit</button>
 
+            </div>
+
+            <div className="column is-5 is-offset-2">
+              <ReactFilestack
+                apikey={ `${process.env.FILESTACK_API_KEY}` }
+                mode={'pick'}
+                onSuccess={(res) => handleChange({
+                  target: {
+                    name: 'image',
+                    value: res.filesUploaded[0].url
+                  }})}
+                onError={(e) => console.log(e)}
+                buttonText={data.image ? 'Image Added': 'Add an Image'}
+                buttonClass={data.image ? 'button is-square is-success' : 'button is-square is-info'}
+              />
+            </div>
+          </div>
         </form>
       </div>
     </div>
