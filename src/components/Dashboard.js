@@ -34,7 +34,6 @@ class Dashboard extends Component{
 
   onDragEnd(result) {
     // dropped outside the list
-    console.log(result)
     if (!result.destination) {
       return
     }
@@ -151,7 +150,6 @@ class Dashboard extends Component{
         y > markers[1].lat && direction === 'north' ||
         y < markers[1].lat && direction === 'south'
       ){
-        console.log(markers[1].lng + ' ' + x)
         markers.shift()
         if(markers.length < 2) return
         startTime = timestamp
@@ -165,7 +163,6 @@ class Dashboard extends Component{
   createMarkups(){
 
     this.markersCoord && this.markersCoord.forEach(geoCoord => {
-      console.log(geoCoord)
       const markerDOM = document.createElement('div')
       markerDOM.className = 'custom-marker'
       markerDOM.style.backgroundImage = `url(${geoCoord.image})`
@@ -248,7 +245,7 @@ class Dashboard extends Component{
       <h2 className="title is-1">My Trip</h2>
       <hr />
 
-      
+
         <div className="container dash-container">
 
           <DragDropContext onDragEnd={this.onDragEnd}>

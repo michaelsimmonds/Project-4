@@ -1,6 +1,7 @@
 const rp = require('request-promise')
 const Twitter = require('twitter')
 const Place = require('../models/place')
+const User = require('../models/user')
 
 function indexRoute( req, res ){
   Place
@@ -25,6 +26,10 @@ function createRoute( req, res ){
 function showRoute(req, res) {
   Place
     .findById(req.params.id)
+    .populate({
+      path: 'comments.user',
+      model: User
+    })
     .then(places =>res.status(200).json(places))
 }
 
@@ -53,7 +58,6 @@ function getWeatherRoute(req, res) {
 }
 
 function getTwitterCommentsRoute(req, res) {
-  console.log(req.params)
   Place
     .findById(req.params.id)
     .then(place => {
@@ -74,7 +78,6 @@ function getTwitterCommentsRoute(req, res) {
               text: tweets.statuses[tweet].text,
               created: tweets.statuses[tweet].created_at
             }
-            console.log(newTweet)
             data.push(newTweet)
           })
         }

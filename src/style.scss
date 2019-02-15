@@ -255,6 +255,13 @@ h4.title.is-4 {
 #show-description, #budget, #ask-login {
   margin-top: 30px;
 }
+.comment{
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  margin-bottom: 10px;
+}
 
 //DASHBOARD
 .dash-title {
