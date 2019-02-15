@@ -104,16 +104,16 @@ class PlacesShow extends React.Component {
               }
 
               <h4 className="title is-4">Country</h4>
-              <hr />
               <p>{country}</p>
+              <hr />
 
               <div id="show-description">
                 <div>
                   <h4 className="title is-4">Description</h4>
-                  <hr />
                   <p className="descriptLong">{descriptLong}</p>
                 </div>
               </div>
+              <hr />
 
               {!Auth.isAuthenticated()  &&
               <Link to ="/register" className="button">Find out more</Link>}
@@ -121,19 +121,19 @@ class PlacesShow extends React.Component {
 
 
               {Auth.isAuthenticated()  &&
-              <h4 className="title is-4">Budget</h4>}
-              {Auth.isAuthenticated()  && <hr />}
+              <h4 className="title is-4" id="budget">Budget</h4>}
               {Auth.isAuthenticated()  &&
                 <div className="level">
                   <p><span>Shoe-String:</span> £{budget1}/day</p>
                   <p><span>Mid-Range:</span> £{budget2}/day</p>
                   <p><span>Luxury:</span> £{budget3}/day</p>
                 </div>}
-
+              {Auth.isAuthenticated()  && <hr />}
 
             </div>
           </div>
         </div>
+
 
         {Auth.isAuthenticated() &&
         <div className="container level weather">
@@ -149,8 +149,10 @@ class PlacesShow extends React.Component {
         </div>}
 
 
+
         {Auth.isAuthenticated() &&
         <div className="container">
+          <hr />
           <div className="columns">
             <div className="column is-half">
 
