@@ -75,7 +75,6 @@ h3.title.is-1 {
 }
 
 form {
-  padding-top: 60px;
   margin: auto;
 }
 
@@ -220,8 +219,6 @@ h4.title.is-4 {
   margin: none;
 }
 
-
-
 #map {
   margin: auto;
   height: 600px;
@@ -305,4 +302,18 @@ div#loading {
 
 .mapboxgl-popup-close-button {
   display: none;
+}
+
+.card-content {
+  margin: 0 0 10px 0;
+}
+
+.weather {
+  padding: 20px 0;
+  margin-top: 15px;
+}
+
+.add {
+  justify-content: center;
+  display: flex;
 }

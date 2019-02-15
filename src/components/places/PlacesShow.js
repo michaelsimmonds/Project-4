@@ -114,22 +114,22 @@ class PlacesShow extends React.Component {
 
 
 
-
-              {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
+              {Auth.isAuthenticated()  &&
               <h4 className="title is-4">Budget</h4>}
-              <div className="level">
-                {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
-                <p><span>Shoe-String:</span> £{budget1}/day</p>}
-                {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') && <p><span>Mid-Range:</span> £{budget2}/day</p>}
-                {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&<p><span>Luxury:</span> £{budget3}/day</p>}
-              </div>
+              {Auth.isAuthenticated()  &&
+                <div className="level">
+                  <p><span>Shoe-String:</span> £{budget1}/day</p>
+                  <p><span>Mid-Range:</span> £{budget2}/day</p>
+                  <p><span>Luxury:</span> £{budget3}/day</p>
+                </div>}
+
 
             </div>
           </div>
         </div>
 
-        {Auth.isAuthenticated() && !this.props.location.pathname.includes('user') &&
-        <div className="container level">
+        {Auth.isAuthenticated() &&
+        <div className="container level weather">
           {this.state.weather.daily.data.map(day =>
             <div key={day.time} >
               <h5>{moment.unix(day.time).format('dddd')}</h5>
@@ -143,37 +143,44 @@ class PlacesShow extends React.Component {
 
 
 
-
         <div className="container">
-          <h4 className="title is-4">Comments</h4>
-          {this.state.place.comments && this.state.place.comments.map(comment =>
-            <div key={comment._id}>
-              <PlacesComment comment={comment}/>
-            </div>
-          )}
-        </div>
+          <div className="columns">
+            <div className="column is-half">
 
-        <div className="container">
-          <div className="comments">
-            <form onSubmit={this.handleCommentSubmit}>
-              <div className="field">
-                <label className="label">Add a comment</label>
-                <input
-                  className="textarea"
-                  name="commentText"
-                  placeholder="Let us know your thoughts..."
-                  value={this.state.text}
-                  onChange={this.handleCommentChange}
-                />
+
+              <div className="comments">
+                <form onSubmit={this.handleCommentSubmit}>
+                  <div className="field">
+                    <input
+                      className="textarea"
+                      name="commentText"
+                      placeholder="Add a comment..."
+                      value={this.state.text}
+                      onChange={this.handleCommentChange}
+                    />
+                  </div>
+                  <button className="button">Submit</button>
+                </form>
               </div>
-              <button className="button">Submit</button>
-            </form>
+
+
+              <h4 className="title is-4">Comments</h4>
+              {this.state.place.comments && this.state.place.comments.map(comment =>
+                <div key={comment._id}>
+                  <PlacesComment comment={comment}/>
+                </div>
+              )}
+
+            </div>
+
+            <div className="column is-half">
+              {this.state.twitter.map((tweet, index) =>
+                <TwitterCard key={index} {...tweet} />
+              )}
+            </div>
           </div>
         </div>
 
-        {this.state.twitter.map((tweet, index) =>
-          <TwitterCard key={index} {...tweet} />
-        )}
 
       </section>
     )
