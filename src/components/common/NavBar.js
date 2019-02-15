@@ -24,7 +24,6 @@ class NavBar extends React.Component {
     this.props.history.push('/')
   }
 
-
   componentDidUpdate(prevProps) {
     if(prevProps.location.pathname !== this.props.location.pathname) {
       this.setState({ navBarOpen: false })
@@ -33,13 +32,16 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar">
+      <nav className="navbar is-transparent">
         <div className="container">
           <div className="navbar-brand">
 
             <Link className="navbar-item" to="/">
               <strong>Home</strong>
             </Link>
+            <Link className="navbar-item" to="/places">Discover</Link>
+            {Auth.isAuthenticated() &&
+              <Link className="navbar-item" to="/dashboard">My Trip</Link>}
 
             <a
               className={`navbar-burger ${this.state.NavBarOpen ? 'is-active' : ''}`}
@@ -52,7 +54,7 @@ class NavBar extends React.Component {
           </div>
           <div className={`navbar-menu ${this.state.navBarOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-              <Link className="navbar-item" to="/places">Discover</Link>
+              {Auth.getPayload().admin && <Link className="navbar-item" to="/places/new">Add Place</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/register">Register</Link>}
               {!Auth.isAuthenticated() && <Link className="navbar-item" to="/login">Login</Link>}
               {Auth.isAuthenticated() && <a className="navbar-item" onClick={this.logout}>Logout</a>}
