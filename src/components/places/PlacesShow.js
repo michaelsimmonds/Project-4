@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import 'weather-icons/css/weather-icons.css'
+import { Link } from 'react-router-dom'
 
 import Loading from './Loading'
 import Auth from '../../lib/Auth'
@@ -104,6 +105,7 @@ class PlacesShow extends React.Component {
 
               <h4 className="title is-4">Country</h4>
               <p>{country}</p>
+              <hr />
 
               <div id="show-description">
                 <div>
@@ -111,22 +113,27 @@ class PlacesShow extends React.Component {
                   <p className="descriptLong">{descriptLong}</p>
                 </div>
               </div>
+              <hr />
+
+              {!Auth.isAuthenticated()  &&
+              <Link to ="/register" className="button">Find out more</Link>}
 
 
 
               {Auth.isAuthenticated()  &&
-              <h4 className="title is-4">Budget</h4>}
+              <h4 className="title is-4" id="budget">Budget</h4>}
               {Auth.isAuthenticated()  &&
                 <div className="level">
                   <p><span>Shoe-String:</span> £{budget1}/day</p>
                   <p><span>Mid-Range:</span> £{budget2}/day</p>
                   <p><span>Luxury:</span> £{budget3}/day</p>
                 </div>}
-
+              {Auth.isAuthenticated()  && <hr />}
 
             </div>
           </div>
         </div>
+
 
         {Auth.isAuthenticated() &&
         <div className="container level weather">
@@ -143,16 +150,29 @@ class PlacesShow extends React.Component {
 
 
 
+        {Auth.isAuthenticated() &&
         <div className="container">
+          <hr />
           <div className="columns">
             <div className="column is-half">
 
+              <h4 className="title is-4">Comments</h4>
+
+              {(this.state.place.comments === []) &&
+                <h4>Be the first to add a comment...</h4>
+              }
+
+              {this.state.place.comments && this.state.place.comments.map(comment =>
+                <div key={comment._id}>
+                  <PlacesComment comment={comment}/>
+                </div>
+              )}
 
               <div className="comments">
                 <form onSubmit={this.handleCommentSubmit}>
                   <div className="field">
                     <input
-                      className="textarea"
+                      className="textarea commentBox"
                       name="commentText"
                       placeholder="Add a comment..."
                       value={this.state.text}
@@ -163,23 +183,19 @@ class PlacesShow extends React.Component {
                 </form>
               </div>
 
-
-              <h4 className="title is-4">Comments</h4>
-              {this.state.place.comments && this.state.place.comments.map(comment =>
-                <div key={comment._id}>
-                  <PlacesComment comment={comment}/>
-                </div>
-              )}
-
             </div>
 
+
             <div className="column is-half">
+
+              <h4 className="title is-4">Twitter</h4>
+
               {this.state.twitter.map((tweet, index) =>
                 <TwitterCard key={index} {...tweet} />
               )}
             </div>
           </div>
-        </div>
+        </div>}
 
 
       </section>

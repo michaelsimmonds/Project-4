@@ -28,6 +28,8 @@ class PlacesIndex extends React.Component {
     return(
       <section className="section">
         <h2 className="title is-1">Destinations</h2>
+
+
         <div className="container">
           <div className="columns is-multiline">
             {this.state.places.map(place =>

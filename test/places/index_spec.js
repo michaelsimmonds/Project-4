@@ -33,7 +33,10 @@ describe('GET /places', () => {
             'image',
             'descriptLong',
             'descriptShort',
-            'geog'
+            'geog',
+            'budget1',
+            'budget2',
+            'budget3'
           ])
         })
         done()
@@ -51,6 +54,9 @@ describe('GET /places', () => {
           expect(place.descriptLong).to.eq(mockPlaceData[i].descriptLong)
           expect(place.descriptShort).to.eq(mockPlaceData[i].descriptShort)
           expect(place.geog).to.deep.eq(mockPlaceData[i].geog)
+          expect(place.budget1).to.eq(mockPlaceData[i].budget1)
+          expect(place.budget2).to.eq(mockPlaceData[i].budget2)
+          expect(place.budget3).to.eq(mockPlaceData[i].budget3)
         })
         done()
       })
