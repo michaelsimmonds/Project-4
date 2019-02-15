@@ -192,7 +192,7 @@ class Dashboard extends Component{
       container: this.mapDOMElement,
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [15, 24],
-      scrollZoom: false,
+      scrollZoom: true,
       zoom: 0.75
     })
   }
@@ -274,7 +274,7 @@ class Dashboard extends Component{
                     ))}
                     {provided.placeholder}
                     <Link to='/places'>
-                      <div className="add-trip"><i class="fas fa-plus"></i></div>
+                      <div className="add-trip"><i className="fas fa-plus"></i></div>
                     </Link>
                   </div>
                 </div>
