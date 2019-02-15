@@ -34,6 +34,7 @@ class PlacesShow extends React.Component {
 
   handleCommentSubmit(e) {
     e.preventDefault()
+    this.setState({ commentText: ''})
     axios
       .post(`/api/places/${this.props.match.params.id}/comments`, {text: this.state.commentText},
         { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
@@ -116,7 +117,8 @@ class PlacesShow extends React.Component {
               <hr />
 
               {!Auth.isAuthenticated()  &&
-              <Link to ="/register" className="button">Find out more</Link>}
+              <Link to ="/register">
+              <button className="button">Find out more</button></Link>}
 
 
 
@@ -137,6 +139,7 @@ class PlacesShow extends React.Component {
 
         {Auth.isAuthenticated() &&
         <div className="container level weather">
+          <hr />
           {this.state.weather.daily.data.map(day =>
             <div key={day.time} >
               <h5>{moment.unix(day.time).format('dddd')}</h5>
@@ -169,7 +172,7 @@ class PlacesShow extends React.Component {
               )}
 
               <div className="comments">
-                <form onSubmit={this.handleCommentSubmit}>
+                <form onSubmit={this.handleCommentSubmit} className="comment-form">
                   <div className="field">
                     <input
                       className="textarea commentBox"

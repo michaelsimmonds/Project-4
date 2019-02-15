@@ -243,11 +243,8 @@ class Dashboard extends Component{
     return(
       <section className="section">
       <h2 className="title is-1">My Trip</h2>
-      <hr />
-
-
         <div className="container dash-container">
-
+          <hr />
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable" direction="vertical">
               {(provided, snapshot) => (
