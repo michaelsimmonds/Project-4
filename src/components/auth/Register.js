@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
+import {Link} from 'react-router-dom'
 import Flash from '../../lib/Flash'
 
 class Register extends React.Component {
@@ -91,6 +92,8 @@ class Register extends React.Component {
                   />
                 </div>
                 <button className="button">Submit</button>
+                <Link to="/login">
+                <button className="button register">Already Registered?</button> </Link>
               </form>
             </div>
           </div>

@@ -116,7 +116,8 @@ class PlacesShow extends React.Component {
               <hr />
 
               {!Auth.isAuthenticated()  &&
-              <Link to ="/register" className="button">Find out more</Link>}
+              <Link to ="/register">
+              <button className="button">Find out more</button></Link>}
 
 
 
