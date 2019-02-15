@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import 'weather-icons/css/weather-icons.css'
+import { Link } from 'react-router-dom'
 
 import Loading from './Loading'
 import Auth from '../../lib/Auth'
@@ -103,19 +104,25 @@ class PlacesShow extends React.Component {
               }
 
               <h4 className="title is-4">Country</h4>
+              <hr />
               <p>{country}</p>
 
               <div id="show-description">
                 <div>
                   <h4 className="title is-4">Description</h4>
+                  <hr />
                   <p className="descriptLong">{descriptLong}</p>
                 </div>
               </div>
+
+              {!Auth.isAuthenticated()  &&
+              <Link to ="/register" className="button">Find out more</Link>}
 
 
 
               {Auth.isAuthenticated()  &&
               <h4 className="title is-4">Budget</h4>}
+              {Auth.isAuthenticated()  && <hr />}
               {Auth.isAuthenticated()  &&
                 <div className="level">
                   <p><span>Shoe-String:</span> £{budget1}/day</p>
@@ -142,7 +149,7 @@ class PlacesShow extends React.Component {
         </div>}
 
 
-
+        {Auth.isAuthenticated()  &&
         <div className="container">
           <div className="columns">
             <div className="column is-half">
@@ -165,6 +172,7 @@ class PlacesShow extends React.Component {
 
 
               <h4 className="title is-4">Comments</h4>
+              <hr />
               {this.state.place.comments && this.state.place.comments.map(comment =>
                 <div key={comment._id}>
                   <PlacesComment comment={comment}/>
@@ -173,13 +181,14 @@ class PlacesShow extends React.Component {
 
             </div>
 
+
             <div className="column is-half">
               {this.state.twitter.map((tweet, index) =>
                 <TwitterCard key={index} {...tweet} />
               )}
             </div>
           </div>
-        </div>
+        </div>}
 
 
       </section>
