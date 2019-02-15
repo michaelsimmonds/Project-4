@@ -245,6 +245,10 @@ class Dashboard extends Component{
     if(!this.state.markersCoord) return <Loading />
     return(
       <section className="section">
+      <h2 className="title is-1">My Trip</h2>
+      <hr />
+
+      
         <div className="container dash-container">
 
           <DragDropContext onDragEnd={this.onDragEnd}>
@@ -256,6 +260,8 @@ class Dashboard extends Component{
                     <div id='map' ref={element => this.mapDOMElement = element}/>
                   </div>
                   <div className="column is-one-quarter">
+                    <h4 className="drag-title">Drag & drop the images below to change the order of your trip</h4>
+                    <hr />
                     {this.state.user && this.state.user.places.map((item, index) => (
                       <Draggable key={index+1} draggableId={index+1} index={index}>
                         {(provided, snapshot) => (
@@ -274,7 +280,7 @@ class Dashboard extends Component{
                     ))}
                     {provided.placeholder}
                     <Link to='/places'>
-                      <div className="add-trip"><i class="fas fa-plus"></i></div>
+                      <div className="add-trip"><i className="fas fa-plus"></i></div>
                     </Link>
                   </div>
                 </div>

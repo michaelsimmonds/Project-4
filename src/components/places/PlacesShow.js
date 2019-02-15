@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import moment from 'moment'
 import 'weather-icons/css/weather-icons.css'
+import { Link } from 'react-router-dom'
 
 import Loading from './Loading'
 import Auth from '../../lib/Auth'
@@ -103,23 +104,25 @@ class PlacesShow extends React.Component {
               }
 
               <h4 className="title is-4">Country</h4>
+              <hr />
               <p>{country}</p>
 
               <div id="show-description">
                 <div>
                   <h4 className="title is-4">Description</h4>
+                  <hr />
                   <p className="descriptLong">{descriptLong}</p>
                 </div>
               </div>
 
-              {!Auth.isAuthenticated() &&
-                <div>
-                  <h4 className="title is-4" id="ask-login"><strong>Register/Login for more information!</strong></h4>
-                </div>
-              }
+              {!Auth.isAuthenticated()  &&
+              <Link to ="/register" className="button">Find out more</Link>}
+
+
 
               {Auth.isAuthenticated()  &&
-              <h4 className="title is-4" id="budget">Budget</h4>}
+              <h4 className="title is-4">Budget</h4>}
+              {Auth.isAuthenticated()  && <hr />}
               {Auth.isAuthenticated()  &&
                 <div className="level">
                   <p><span>Shoe-String:</span> £{budget1}/day</p>
@@ -179,6 +182,7 @@ class PlacesShow extends React.Component {
               </div>
 
             </div>
+
 
             <div className="column is-half">
 
