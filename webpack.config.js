@@ -43,15 +43,9 @@ module.exports = {
       filename: 'index.html',
       inject: 'body'
     }),
-<<<<<<< HEAD
-    new CopyWebpackPlugin({
-      from: 'src/assets', to: 'assets'
-    }),
-=======
     new CopyWebpackPlugin([
       { from: 'src/assets', to: 'assets' }
     ]),
->>>>>>> bc8e1d2bc96c67e8daa0b6ecbdf2251a1757c102
     new Dotenv()
   ]
 }
