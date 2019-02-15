@@ -64,7 +64,7 @@ function getTwitterCommentsRoute(req, res) {
         access_token_secret: process.env.ACCESS_TOKEN_SECRET
       })
       const data = []
-      return client.get(`search/tweets.json?q=${place.name}&include_entities=1`, function(error, tweets, response) {
+      return client.get(`search/tweets.json?q=${place.name}&count=4`, function(error, tweets, response) {
         if (!error) {
           Object.keys(tweets.statuses).map(tweet => {
             const newTweet = {
