@@ -17,27 +17,30 @@ import Register from './components/auth/Register'
 import Dashboard from './components/Dashboard'
 import SecureRoute from './components/common/SecureRoute'
 import FlashMessage from './components/common/FlashMessage'
+import ScrollToTop from './components/common/ScrollToTop'
 
 class App extends React.Component {
   render() {
     return(
       <BrowserRouter>
-        <main>
+        <ScrollToTop>
+          <main>
 
-          <NavBar />
-          <FlashMessage/>
+            <NavBar />
+            <FlashMessage/>
 
-          <Switch>
-            <SecureRoute path="/dashboard" component={Dashboard} />
-            <SecureRoute path="/places/new" component={PlacesNew} />
-            <Route path="/places/:id" component={PlacesShow} />
-            <Route path="/places" component={PlacesIndex} />
-            <Route path="/register" component={Register} />
-            <Route path="/login" component={Login} />
-            <Route path="/" component={Home} />
-          </Switch>
+            <Switch>
+              <SecureRoute path="/dashboard" component={Dashboard} />
+              <SecureRoute path="/places/new" component={PlacesNew} />
+              <Route path="/places/:id" component={PlacesShow} />
+              <Route path="/places" component={PlacesIndex} />
+              <Route path="/register" component={Register} />
+              <Route path="/login" component={Login} />
+              <Route path="/" component={Home} />
+            </Switch>
 
-        </main>
+          </main>
+        </ScrollToTop>
       </BrowserRouter>
     )
   }
