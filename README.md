@@ -1,8 +1,8 @@
-# General Assembly Project 3 : Full Stack RESTful App React/Express/Mongo
+# General Assembly Project 3 : Full Stack RESTful App React/Express/MongoDB
 
 ### Timeframe
 
-5 days and a group of 3 developers
+5 days in a group of 3 developers
 
 ## Technologies used
 
@@ -34,6 +34,8 @@ This application is a website proposing a service for planning your trip around 
 * Each destination will also have more information like live forecast, average budget or the latest Tweets talking about the place.
 
 As our destination database can evolve everyday, we also created a feature allowing admin users to add new places and destinations.
+
+![ezgif com-video-to-gif 2](https://user-images.githubusercontent.com/39668354/52919658-99809900-32fc-11e9-80f1-60f7f3031abf.gif)
 
 ---
 
