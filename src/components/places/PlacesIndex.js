@@ -15,7 +15,7 @@ class PlacesIndex extends React.Component {
 
   componentDidMount() {
     //If user is logged in, the response will contain only the places
-    //that the user doesn't have already chosen
+    //that the user doesn't have already in his dashboard
     axios.get('/api/places', {
       headers: Auth.isAuthenticated() ?
         { Authorization: `Bearer ${Auth.getToken()}`} : null
