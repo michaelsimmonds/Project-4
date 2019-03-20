@@ -1,3 +1,14 @@
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
+$size: 100px !default;
+$thickness: 6px !default;
+$base-color: #fff !default;
+$wheel-color: #6e94cc !default;
+$speed: 800ms !default;
+
 $font-colour: #F5F7FB;
 
 * {
@@ -89,28 +100,26 @@ form {
       max-width: 100%;
       width: 100%;
       -webkit-appearance: none;
-align-items: center;
-border: 1px solid transparent;
-border-radius: 4px;
-box-shadow: none;
-display: inline-flex;
-font-size: 1rem;
-height: 2.25em;
-justify-content: flex-start;
-line-height: 1.5;
-padding-bottom: calc(0.375em - 1px);
-padding-left: calc(0.625em - 1px);
-padding-right: calc(0.625em - 1px);
-padding-top: calc(0.375em - 1px);
-position: relative;
-vertical-align: top;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      box-shadow: none;
+      display: inline-flex;
+      font-size: 1rem;
+      height: 2.25em;
+      justify-content: flex-start;
+      line-height: 1.5;
+      padding-bottom: calc(0.375em - 1px);
+      padding-left: calc(0.625em - 1px);
+      padding-right: calc(0.625em - 1px);
+      padding-top: calc(0.375em - 1px);
+      position: relative;
+      vertical-align: top;
 }
+
 .add-place button{
   width: 100%;
 }
-// input.input {
-//   max-width: 50%;
-// }
 
 button.button {
   background-color: #94B0DA;
@@ -295,10 +304,6 @@ h5 {
   margin-bottom: 15px;
 }
 
-// div .level {
-//   padding-top: 10px;
-// }
-
 .temp {
   margin-top: 5px;
 }
@@ -320,21 +325,18 @@ h5 {
   background-color: #6e94cc;
 }
 
-//LOADING
-@keyframes rotate {
-  0% {transform: rotate(0deg);}
-  25% {transform: rotate(-90deg);}
-  50% {transform: rotate(-180deg);}
-  75% {transform: rotate(-270deg);}
-  100% {transform: rotate(-360deg);}
-}
-
-div#loading {
-  width: 250px;
-  height: 250px;
-  margin: 20vh auto;
-  background-image: url('http://pngimg.com/uploads/globe/globe_PNG52.png');
-  animation: rotate 5s linear infinite;
+// Loading spin
+#loading {
+  margin: 5% auto;
+	height: $size;
+	width: $size;
+  border: $thickness solid $base-color;
+	border: {
+    right-color: $wheel-color;
+    top-color: $wheel-color;
+    radius: 100%;
+  }
+  animation: spin $speed infinite linear;
 }
 
 .descriptLong {
