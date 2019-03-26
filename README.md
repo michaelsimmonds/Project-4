@@ -49,17 +49,19 @@ We also tend to work in a 'war zone' kind of mode where we could code next to ea
 
 #### Task management
 
-Working in a group of 3 is a huge advantage as long as each other understand the work that needs to be done. We used Trello quite heavily to create tickets and assigned tasks. Until the MVP and as we were 3 in the team, we decided to assign 1 person to build the back-end, 1 person to build the front-end and 1 person to try new technologies that we wanted to use in our version 2.0 (fully featured product).
+Working in a group of three is a huge advantage as long as each other understand the work that needs to be done. We used Trello quite heavily to create tickets and assigned tasks. We decided to assign one person to build the back-end, another to build the frontend and the third to experiment with new technologies that we wanted to use in our version 2.0 (fully featured product).
 
 #### Branching and Conflict resolution
 
-We use a simplified version of the GitFlow branching system where we basically used 3 different type of branches:
+We use a simplified version of the GitFlow branching system by using three different types of branches:
 
-1. Development: this is the main branch where anyone could create feature branches from and merge their work back in. No broken code should never be merged in development since it will affect everyone's code.
+1. Development: this is the main branch where anyone could create feature branches from and merge their work back in. It was important that none of us ever commited broken code on this branch.
+
 2. <feature-branch>: those branches were created by any member of the group in order to develop new features. The branches needed to be named according to the feature developed (i.e. <login-route>).
+  
 3. Master: this branch was dedicated to deployment. No commit should never happen in this branch. When a version of the app was ready to be deployed in production (in Heroku), the development branch was merged into master and then pushed ot Heroku.
 
-Conflicts were mitigated by making sure that everyone pulled everyone's changes every morning to avoid long divergent branches. Also, when a conflict occurred, discussion was made between the 2 developers in order to fix the conflict in a way that no information will be lost.
+Conflicts were mitigated by making sure that everyone pulled everyone's changes every morning to avoid long divergent branches. When a conflict occurred we all discussed it to ensure that no information would be lost.
 
 ---
 
@@ -67,7 +69,7 @@ Conflicts were mitigated by making sure that everyone pulled everyone's changes 
 
 Our application is following as much as it can the RESTful paradigm, let's have a look at what is happening when an user is navigating to the index page of the places (destination):
 
-![image](https://user-images.githubusercontent.com/39668354/52906087-31b74900-323d-11e9-83e2-60a596050677.png)
+![Screenshot 2019-03-25 at 19 19 27](https://user-images.githubusercontent.com/43914382/54947761-fcd09d00-4f32-11e9-908a-d32ad29b082a.png)
 
 1. An axios request will be sent to our back-end API requesting all the places to be sent back to the front-end:
 
@@ -94,7 +96,7 @@ router.route('/places')
   .post(secureRoute, placesController.create)
   ```
 
-3. The controller will then handle the request and do the logic to get the data from our database:
+3. The controller will then handle the request and retrieve the data from our database:
 
 ```
 function indexRoute( req, res ){
@@ -138,9 +140,9 @@ const placeSchema = new mongoose.Schema({
 
 ### Wins
 
-1. Team organisation: daily stand-up, daily merging of each other branch and democratic decision has allowed the team to move forward at a great speed without wasting time fixing conflic, arguing features or diverging back-end and front-end development. We kept in sync during all time and this greatly impact the productivity and the atmosphere in the team.
+1. Team organisation: daily stand-up, daily merging of each others branches and democratic decision making gave our team direction and minimised time spent resolving conflicts arising from divergent paths. We all kept in sync during this time which imporved the productivity and atmosphere in the team.
 
-2. Use of the Authentication helper method that allow the application to render pages differently according to if the user is logged-in or not i.e. in the show page, we only show current weather, tweets and comments if the user is logged in. This allow to use the same route api/pages and api/pages/:id for any scenario.
+2. How the page's content alters depending on whether the user is authenticated or not. For example, on the show page, we only show current weather, tweets and comments if the user is logged in.
 
 3. The drawing line on the map was quite a challenge since every point had to be calculated for each increment [X (latitude), Y (longitude)]. The idea was to use the tan(O) = opposite / adjacent trigonometric formula to find, for each time we increment X, the corresponding Y point.  
 
@@ -148,7 +150,7 @@ const placeSchema = new mongoose.Schema({
 
 ### Future Features / Enhancements
 
-* The "place" model which contains all the information about a single destination in the MongoDB could have a user field which could be used to know who already chose this destination. The idea is that we could display what other users are currently interested by this place and potentially connect them together.
+* The "place" model which contains all the information about a single destination in the MongoDB could have a user field. This could be populated with the users who have added that place to their trip so they could potentially be connected together.
 
 * Email validation and password reset.
 
